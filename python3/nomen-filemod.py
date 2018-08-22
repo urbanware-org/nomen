@@ -14,6 +14,7 @@
 import os
 import sys
 
+
 def main():
     from core import clap
     from core import common
@@ -25,50 +26,50 @@ def main():
         print("%s: error: %s" % (os.path.basename(sys.argv[0]), e))
         sys.exit(1)
 
-    p.set_description("Modify the base name of files by adding, removing " \
+    p.set_description("Modify the base name of files by adding, removing "
                       "or replacing a user-defined string.")
-    p.set_epilog("Further information and usage examples can be found " \
+    p.set_epilog("Further information and usage examples can be found "
                  "inside the documentation file for this script.")
 
     # Required arguments
     p.add_predef("-a", "--action", "action to perform", "action",
                  ["add", "remove", "replace"], True)
-    p.add_avalue("-d", "--directory", "directory that contains the files " \
+    p.add_avalue("-d", "--directory", "directory that contains the files "
                  "to process", "directory", None, True)
     p.add_predef("-p", "--position", "position where to perform the action",
                  "position", ["any", "prefix", "suffix"], True)
-    p.add_avalue("-s", "--string", "input string to perform the action " \
+    p.add_avalue("-s", "--string", "input string to perform the action "
                  "with (case-sensitive)", "input_string", None, True)
 
     # Optional arguments
-    p.add_switch("-c", "--case-sensitive", "do not ignore the case of the " \
+    p.add_switch("-c", "--case-sensitive", "do not ignore the case of the "
                  "given exclude or explicit pattern", "case", False, False)
-    p.add_switch(None, "--confirm", "skip the confirmation prompt and " \
+    p.add_switch(None, "--confirm", "skip the confirmation prompt and "
                  "instantly rename files", "confirm", True, False)
-    p.add_avalue(None, "--exclude", "pattern to exclude certain files " \
-                 "(case-insensitive, multiple patterns separated via " \
+    p.add_avalue(None, "--exclude", "pattern to exclude certain files "
+                 "(case-insensitive, multiple patterns separated via "
                  "semicolon)", "exclude_pattern", None, False)
-    p.add_avalue(None, "--explicit", "explicit pattern to only process " \
-                 "certain files (case-insensitive, multiple patterns " \
+    p.add_avalue(None, "--explicit", "explicit pattern to only process "
+                 "certain files (case-insensitive, multiple patterns "
                  "separated via semicolon)", "explicit_pattern", None, False)
     p.add_switch("-h", "--help", "print this help message and exit", None,
                  True, False)
     p.add_switch(None, "--ignore-symlinks", "ignore symbolic links",
                  "ignore_symlinks", True, False)
-    p.add_switch("-r", "--recursive", "process the given directory " \
+    p.add_switch("-r", "--recursive", "process the given directory "
                  "recursively", "recursive", True, False)
-    p.add_switch(None, "--regex", "use regex syntax for the exclude or " \
-                 "explicit pattern instead of just asterisk wildcards and " \
-                 "semicolon separators (for details see the section " \
-                 "'Regular expression operations' inside the official " \
+    p.add_switch(None, "--regex", "use regex syntax for the exclude or "
+                 "explicit pattern instead of just asterisk wildcards and "
+                 "semicolon separators (for details see the section "
+                 "'Regular expression operations' inside the official "
                  "Python documentation)", "regex_syntax", True, False)
-    p.add_avalue(None, "--replace-string", "string to replace the input" \
+    p.add_avalue(None, "--replace-string", "string to replace the input"
                  "string with (when using the action 'replace')",
                  "replace_string", None, False)
-    p.add_avalue(None, "--simulate", "simulate the rename process and " \
+    p.add_avalue(None, "--simulate", "simulate the rename process and "
                  "write the details into a report file", "report_file", None,
                  False)
-    p.add_avalue(None, "--strip", "remove certain leading and trailing " \
+    p.add_avalue(None, "--strip", "remove certain leading and trailing "
                  "characters from the base name", "strip_chars", None, False)
     p.add_switch(None, "--version", "print the version number and exit", None,
                  True, False)
@@ -83,15 +84,15 @@ def main():
         sys.exit(0)
 
     args = p.parse_args()
-    if args.confirm and not args.report_file == None:
-        p.error("The confirm and the simulate argument cannot be given at " \
+    if args.confirm and args.report_file is not None:
+        p.error("The confirm and the simulate argument cannot be given at "
                 "the same time.")
     if args.exclude_pattern and args.explicit_pattern:
-        p.error("The exclude and the explicit pattern argument cannot be " \
+        p.error("The exclude and the explicit pattern argument cannot be "
                 "given at the same time.")
 
     try:
-        if not args.confirm and args.report_file == None:
+        if not args.confirm and args.report_file is None:
             if not common.confirm_notice():
                 sys.exit(0)
 
@@ -113,8 +114,8 @@ def main():
     except Exception as e:
         p.error(e)
 
+
 if __name__ == "__main__":
     main()
 
 # EOF
-

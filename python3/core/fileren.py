@@ -13,13 +13,13 @@
 
 __version__ = "2.3.5"
 
-from . import common
 import os
-from . import paval as pv
 import re
+from datetime import datetime as dt
+from . import common
+from . import paval as pv
 from . import statcase
 
-from datetime import datetime as dt
 
 def convert_case(directory, case, conflict_mode, recursive=False,
                  cfg_lower=None, cfg_mixed=None, cfg_title=None,
@@ -37,7 +37,7 @@ def convert_case(directory, case, conflict_mode, recursive=False,
     if not directory.endswith(os.path.sep):
         directory += os.path.sep
 
-    if report_file == None:
+    if report_file is None:
         simulate = False
     else:
         pv.path(report_file, "report", True, False)
@@ -83,11 +83,13 @@ def convert_case(directory, case, conflict_mode, recursive=False,
     else:
         common.rename(list_renamed)
 
+
 def get_version():
     """
         Return the version of this module.
     """
     return __version__
+
 
 def modify_names(directory, action, position, input_string,
                  replace_string=None, recursive=False, exclude=None,
@@ -108,23 +110,23 @@ def modify_names(directory, action, position, input_string,
     if not directory.endswith(os.path.sep):
         directory += os.path.sep
 
-    if report_file == None:
+    if report_file is None:
         simulate = False
     else:
         pv.path(report_file, "report", True, False)
         report_file = os.path.abspath(report_file)
         simulate = True
 
-    if not replace_string == None:
+    if replace_string is not None:
         if not action == "replace":
-            raise Exception("The replace string argument can only be used " \
+            raise Exception("The replace string argument can only be used "
                             "together with the action 'replace'.")
         else:
             pv.string(replace_string, "string False", False,
                       common.get_invalid_chars())
 
     if action == "add" and position == "any":
-        raise Exception("The position 'any' cannot be used together with " \
+        raise Exception("The position 'any' cannot be used together with "
                         "the action 'add'.")
 
     if len(input_string) == 0:
@@ -133,7 +135,7 @@ def modify_names(directory, action, position, input_string,
         pv.string(input_string, "input string", False,
                   common.get_invalid_chars())
 
-    if not strip_chars == None:
+    if strip_chars is not None:
         pv.string(strip_chars, "strip chars string", False,
                   common.get_invalid_chars())
 
@@ -144,7 +146,7 @@ def modify_names(directory, action, position, input_string,
     list_renamed = []
     list_skipped = []
     regex = None
-    if not pattern == None:
+    if pattern is not None:
         regex = common.compile_regex(pattern, ignore_case, regex_syntax)
 
     list_content, list_excluded = \
@@ -157,7 +159,7 @@ def modify_names(directory, action, position, input_string,
 
     if simulate:
         explicit = None
-        if exclude == None:
+        if exclude is None:
             exclude = False
             explicit = False
         elif exclude:
@@ -173,15 +175,15 @@ def modify_names(directory, action, position, input_string,
         list_header.append(["Ignore symlinks:", ignore_symlinks])
         list_header.append(["Action to perform:", action.capitalize()])
         list_header.append(["Position:", position.capitalize()])
-        list_header.append(["Input string:", "\"" + input_string + "\" " \
+        list_header.append(["Input string:", "\"" + input_string + "\" "
                             "(without double quotes)"])
-        if not replace_string == None:
-            list_header.append(["Replace string:", "\"" + replace_string + \
+        if replace_string is not None:
+            list_header.append(["Replace string:", "\"" + replace_string +
                                 "\" (without double quotes)"])
-        if strip_chars == None:
+        if strip_chars is None:
             list_header.append(["Strip chars:", "None"])
         else:
-            list_header.append(["Strip chars:", "\"" + strip_chars + "\" " \
+            list_header.append(["Strip chars:", "\"" + strip_chars + "\" "
                                 "(without double quotes)"])
 
         list_header.append(["Exclude files:", exclude])
@@ -194,6 +196,7 @@ def modify_names(directory, action, position, input_string,
                       list_skipped, time_start)
     else:
         common.rename(list_renamed)
+
 
 def rename_files(directory, rename_mode, separator=" ", recursive=False,
                  padding=0, exclude=None, pattern=None, ignore_case=True,
@@ -211,10 +214,10 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
     pv.string(separator, "seperator", False, common.get_invalid_chars())
     pv.intvalue(step, "step", True, False, False)
 
-    if not order_by == None:
+    if order_by is not None:
         pv.compstr(order_by, "order by", ["accessed", "created", "modified"])
         if not rename_mode == "keep-order":
-            raise Exception("The order-by argument can only be used in " \
+            raise Exception("The order-by argument can only be used in "
                             "combination with keep-order mode.")
 
     step = int(step)
@@ -223,14 +226,14 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
     if not directory.endswith(os.path.sep):
         directory += os.path.sep
 
-    if report_file == None:
+    if report_file is None:
         simulate = False
     else:
         pv.path(report_file, "report", True, False)
         report_file = os.path.abspath(report_file)
         simulate = True
 
-    if not custom_name == None:
+    if custom_name is not None:
         pv.string(custom_name, "custom file name", False,
                   common.get_invalid_chars())
 
@@ -241,7 +244,7 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
     list_renamed = []
     list_skipped = []
     regex = None
-    if not pattern == None:
+    if pattern is not None:
         regex = common.compile_regex(pattern, ignore_case, regex_syntax)
 
     list_content, list_excluded = \
@@ -276,7 +279,7 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
             padding = str(padding)
 
         explicit = None
-        if exclude == None:
+        if exclude is None:
             exclude = False
             explicit = False
         elif exclude:
@@ -301,7 +304,7 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
         list_header.append(["Ignore symlinks:", ignore_symlinks])
         list_header.append(["Rename mode:", rename_mode.capitalize()])
         list_header.append(["Order by time:", order_by])
-        list_header.append(["Separator:", "\"" + separator + "\" " \
+        list_header.append(["Separator:", "\"" + separator + "\" "
                             "(without double quotes)"])
         list_header.append(["Numeric padding:", padding])
         list_header.append(["Step size:", step])
@@ -316,6 +319,7 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
     else:
         common.rename(list_renamed)
 
+
 def __check_config_mismatch(case, cfg_lower, cfg_title, cfg_mixed, cfg_upper):
     """
         Check for a case config mismatch.
@@ -323,20 +327,20 @@ def __check_config_mismatch(case, cfg_lower, cfg_title, cfg_mixed, cfg_upper):
     cfg_mismatch = False
 
     if case == "lower":
-        if not cfg_lower == None:
+        if cfg_lower is not None:
             cfg_mismatch = True
     elif case == "title":
-        if not cfg_title == None:
+        if cfg_title is not None:
             cfg_mismatch = True
     elif case == "upper":
-        if not cfg_upper == None:
+        if cfg_upper is not None:
             cfg_mismatch = True
     elif case == "config":
-        if cfg_lower == None and \
-           cfg_mixed == None and \
-           cfg_title == None and \
-           cfg_upper == None:
-            raise Exception("The config target case requires at least one " \
+        if cfg_lower is None and \
+           cfg_mixed is None and \
+           cfg_title is None and \
+           cfg_upper is None:
+            raise Exception("The config target case requires at least one "
                             "case config file to operate.")
     else:
         raise Exception("An unsupported case string was given.")
@@ -344,9 +348,10 @@ def __check_config_mismatch(case, cfg_lower, cfg_title, cfg_mixed, cfg_upper):
     if cfg_mismatch:
         if case == "title":
             case += " "
-        raise Exception("Config file mismatch (cannot use %scase config " \
-                        "file when using %scase as target case anyway)." % \
+        raise Exception("Config file mismatch (cannot use %scase config "
+                        "file when using %scase as target case anyway)." %
                         (case, case))
+
 
 def __convert_case(list_files, list_renamed, list_skipped, case,
                    conflict_mode, recursive, cfg_lower, cfg_mixed, cfg_title,
@@ -362,8 +367,8 @@ def __convert_case(list_files, list_renamed, list_skipped, case,
 
     fs_case = common.get_fs_case_sensitivity(os.path.dirname(list_files[0]))
 
-    if cfg_lower == None and cfg_mixed == None and \
-       cfg_title == None and cfg_upper == None:
+    if cfg_lower is None and cfg_mixed is None and \
+       cfg_title is None and cfg_upper is None:
         static_case = False
     else:
         list_lower, list_mixed, list_title, list_upper = \
@@ -431,6 +436,7 @@ def __convert_case(list_files, list_renamed, list_skipped, case,
 
     return list_renamed, list_skipped
 
+
 def __fill_num_gaps(list_files, separator, padding, list_renamed,
                     list_skipped, fs_case, step):
     """
@@ -465,7 +471,7 @@ def __fill_num_gaps(list_files, separator, padding, list_renamed,
             num = list_gaps.pop(0)
             file_num = str(num).rjust(int(padding), "0")
             file_newname = file_dir + separator + \
-                           file_num.replace(" ", "0") + file_ext
+                file_num.replace(" ", "0") + file_ext
             file_newpath = file_path.replace(file_name, file_newname)
 
             if common.file_exists(file_newpath, list_renamed, fs_case):
@@ -475,6 +481,7 @@ def __fill_num_gaps(list_files, separator, padding, list_renamed,
 
     return list_renamed, list_skipped
 
+
 def __get_num_gaps(list_files, separator, padding, step):
     """
         Method to determine numeration gaps.
@@ -483,11 +490,12 @@ def __get_num_gaps(list_files, separator, padding, step):
 
     for i in range(len(list_files)):
         x = (i + 1) * step
-        n = separator + str(x).rjust(int(padding),"0")
+        n = separator + str(x).rjust(int(padding), "0")
         if not any(n in s for s in list_files):
             list_gaps.append(int(n.replace(separator, "")))
 
     return list_gaps
+
 
 def __modify_name_add(file_name, string, position):
     """
@@ -501,6 +509,7 @@ def __modify_name_add(file_name, string, position):
         file_newname = file_name + string
 
     return file_newname
+
 
 def __modify_name_remove(file_name, string, position):
     """
@@ -517,6 +526,7 @@ def __modify_name_remove(file_name, string, position):
 
     return file_newname
 
+
 def __modify_name_replace(file_name, string, replace_string, position):
     """
         Core method to replace a string inside the base name of a file.
@@ -531,6 +541,7 @@ def __modify_name_replace(file_name, string, replace_string, position):
         file_newname = re.sub(string + "$", replace_string, file_name)
 
     return file_newname
+
 
 def __modify_names(list_files, list_renamed, list_skipped, action, position,
                    input_string, replace_string, strip_chars):
@@ -561,7 +572,7 @@ def __modify_names(list_files, list_renamed, list_skipped, action, position,
             file_newname = __modify_name_replace(file_name, input_string,
                                                  replace_string, position)
 
-        if not strip_chars == None:
+        if strip_chars is not None:
             if len(strip_chars) > 0:
                 file_newname = file_newname.strip(strip_chars)
 
@@ -581,6 +592,7 @@ def __modify_names(list_files, list_renamed, list_skipped, action, position,
                     list_renamed.append([file_path, None, file_newpath])
 
     return list_renamed, list_skipped
+
 
 def __process_case_list(case, case_list):
     """
@@ -613,6 +625,7 @@ def __process_case_list(case, case_list):
 
     return list_words, list_strings
 
+
 def __rename_files_fill(list_files, list_renamed, list_skipped, separator,
                         padding, fill_gaps=False, ignore_file_ext=False,
                         custom_name=None, step=1):
@@ -642,7 +655,7 @@ def __rename_files_fill(list_files, list_renamed, list_skipped, separator,
         list_path = file_path.split(os.path.sep)
         file_name = list_path[-1]
 
-        if custom_name == None:
+        if custom_name is None:
             file_dir = list_path[-2]
         else:
             file_dir = custom_name
@@ -674,7 +687,7 @@ def __rename_files_fill(list_files, list_renamed, list_skipped, separator,
 
         file_newpath = file_path
         while common.file_exists(file_newpath, obj_ren, fs_case) or \
-              common.file_exists(file_newpath, obj_skip, fs_case):
+                common.file_exists(file_newpath, obj_skip, fs_case):
             num += step
             file_num = str(num).rjust(int(padding), "0")
             file_newname = \
@@ -696,6 +709,7 @@ def __rename_files_fill(list_files, list_renamed, list_skipped, separator,
         list_skipped.extend(list_temp_skipped)
 
     return list_renamed, list_skipped
+
 
 def __rename_files_keep_order(list_files, list_renamed, list_skipped,
                               separator, padding, ignore_file_ext=False,
@@ -734,7 +748,7 @@ def __rename_files_keep_order(list_files, list_renamed, list_skipped,
         list_path = file_path.split(os.path.sep)
         file_name = list_path[-1]
 
-        if custom_name == None:
+        if custom_name is None:
             file_dir = list_path[-2]
         else:
             file_dir = custom_name
@@ -756,7 +770,7 @@ def __rename_files_keep_order(list_files, list_renamed, list_skipped,
             file_newname = \
                 file_dir + separator + file_num.replace(" ", "0") + file_ext
             file_newpath = file_path.replace(file_name, file_newname)
-            if not file_newpath in list_skipped:
+            if file_newpath not in list_skipped:
                 file_temppath = file_newpath + ".__temp__"
 
         if os.path.exists(file_path):
@@ -766,6 +780,7 @@ def __rename_files_keep_order(list_files, list_renamed, list_skipped,
                 list_renamed.append([file_path, file_temppath, file_newpath])
 
     return list_renamed, list_skipped
+
 
 def __static_case(base_name, case, list_lower, list_mixed, list_title,
                   list_upper):
@@ -799,6 +814,7 @@ def __static_case(base_name, case, list_lower, list_mixed, list_title,
 
     return base_name
 
+
 def __static_case_word(list_cfg_str, list_file_str):
     """
         Convert the case of each word of the base name of a file.
@@ -818,6 +834,7 @@ def __static_case_word(list_cfg_str, list_file_str):
 
     return base_name
 
+
 def __static_case_string(list_cfg_regex, base_name):
     """
         Convert the case of a string inside the base name of a file.
@@ -835,4 +852,3 @@ def __static_case_string(list_cfg_regex, base_name):
     return base_name
 
 # EOF
-

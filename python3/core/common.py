@@ -14,13 +14,13 @@
 __version__ = "2.3.5"
 
 import os
-from . import paval as pv
 import random
 import re
 import sys
 import tempfile
-
 from datetime import datetime as dt
+from . import paval as pv
+
 
 def compile_regex(string, ignore_case=True, regex_syntax=False):
     """
@@ -30,25 +30,25 @@ def compile_regex(string, ignore_case=True, regex_syntax=False):
     if regex_syntax:
         pattern = ".*" + string + ".*"
     else:
-        spec_chars = [ "\\", ".", "^", "$", "+", "?", "{", "}", "[", "]",
-                       "|", "(", ")" ]
+        spec_chars = ["\\", ".", "^", "$", "+", "?", "{", "}", "[", "]",
+                      "|", "(", ")"]
         for char in spec_chars:
             string = string.replace(char, "\\" + char)
         string = string.strip("*").strip(";")
-        while ("*" * 2) in string:
+        while "*" * 2 in string:
             string = string.replace(("*" * 2), "*")
-        while (";" * 2) in string:
+        while ";" * 2 in string:
             string = string.replace((";" * 2), ";")
 
         list_string = string.split(";")
-        if len(list_string) > 0:
+        if list_string:
             pattern = ""
             for crit in list_string:
                 if not crit == "":
                     pattern += "(.*" + crit.replace("*", ".*") + ".*)|"
             pattern = pattern.rstrip("|")
             if pattern == "":
-                raise Exception("The given string does not make sense this " \
+                raise Exception("The given string does not make sense this "
                                 "way.")
 
     if ignore_case:
@@ -57,6 +57,7 @@ def compile_regex(string, ignore_case=True, regex_syntax=False):
         regex = re.compile(pattern)
 
     return regex
+
 
 def confirm_notice():
     """
@@ -95,6 +96,7 @@ will be cancelled.""" % string
 
     return proceed
 
+
 def dir_space_modifier(directory, remove_duplicate=False,
                        remove_leading=False, remove_trailing=False,
                        brackets=False, hyphens=False, punctuation=False,
@@ -106,7 +108,7 @@ def dir_space_modifier(directory, remove_duplicate=False,
     """
 
     list_exclude = []
-    if not exclude == None:
+    if exclude is not None:
         list_exclude = exclude.split(";")
 
     for item in os.listdir(directory):
@@ -124,7 +126,7 @@ def dir_space_modifier(directory, remove_duplicate=False,
             nextdir = path
         else:
             if remove_duplicate:
-                while (" " * 2) in item:
+                while " " * 2 in item:
                     item = item.replace((" " * 2), " ")
 
             if hyphens:
@@ -180,7 +182,7 @@ def dir_space_modifier(directory, remove_duplicate=False,
             newpath = os.path.join(directory, item)
             if remove_duplicate:
                 # Repeat this step after the replace actions above
-                while (" " * 2) in newpath:
+                while " " * 2 in newpath:
                     newpath = newpath.replace((" " * 2), " ")
 
             if not os.path.exists(newpath):
@@ -194,6 +196,7 @@ def dir_space_modifier(directory, remove_duplicate=False,
                                remove_trailing, brackets, hyphens,
                                punctuation, ignore_symlinks, True, exclude)
 
+
 def file_exists(file_path, list_files, fs_case_sensitive):
     """
         Check if a file already exists on the file system as well as in a
@@ -206,7 +209,7 @@ def file_exists(file_path, list_files, fs_case_sensitive):
         file_exists = False
 
     for item in list_files:
-        if item[1] == None:
+        if item[1] is None:
             item[1] = ""
 
         if fs_case_sensitive:
@@ -221,11 +224,13 @@ def file_exists(file_path, list_files, fs_case_sensitive):
 
     return file_exists
 
+
 def format_timestamp(float_stamp=0):
     """
        Convert a timestamp float into a readable format.
     """
     return str(dt.fromtimestamp(float(str(float_stamp))))
+
 
 def get_files(directory, recursive=False, ignore_case=True, regex=None,
               regex_exclude=True, ignore_symlinks=False, order_by=None):
@@ -239,15 +244,16 @@ def get_files(directory, recursive=False, ignore_case=True, regex=None,
     list_excluded = []
 
     list_files, list_excluded = \
-        __get_files( \
+        __get_files(
             directory, ignore_case, regex, regex_exclude, ignore_symlinks,
             recursive, list_files, list_excluded, order_by)
 
-    if order_by == None:
+    if order_by is None:
         list_files.sort()
     list_excluded.sort()
 
     return list_files, list_excluded
+
 
 def get_fs_case_sensitivity(directory):
     """
@@ -271,6 +277,7 @@ def get_fs_case_sensitivity(directory):
 
     return fs_case_sensitive
 
+
 def get_invalid_chars():
     """
         Return the invalid file name characters (which must or should not be
@@ -285,11 +292,13 @@ def get_invalid_chars():
 
     return invalid_chars
 
+
 def get_version():
     """
         Return the version of this module.
     """
     return __version__
+
 
 def print_text_box(heading, text):
     """
@@ -297,7 +306,7 @@ def print_text_box(heading, text):
     """
     heading = heading.strip()
     if len(heading) > 72:
-        raise Exception("The text box heading must not be longer than 72 " \
+        raise Exception("The text box heading must not be longer than 72 "
                         "characters.")
     if text == "":
         raise Exception("The text box text must not be empty.")
@@ -321,11 +330,12 @@ def print_text_box(heading, text):
                 line = line + word + " "
             count += 1
             if count > len(list_words):
-                text_box +=  "\n|  " + line.ljust(74, " ") + "|"
+                text_box += "\n|  " + line.ljust(74, " ") + "|"
     text_box += "\n|" + (" " * 76) + "|" \
                 "\n+" + ("-" * 76) + "+\n"
 
     print(text_box)
+
 
 def random_string(length, uppercase=True, lowercase=False, numbers=False,
                   unique=False):
@@ -344,7 +354,7 @@ def random_string(length, uppercase=True, lowercase=False, numbers=False,
     if numbers:
         chars += numbers
 
-    if len(chars) == 0:
+    if not chars:
         return string
     if len(chars) < length:
         length = len(chars)
@@ -366,7 +376,7 @@ def rename(list_files, reverse=False):
     """
     list_skipped = []
 
-    if len(list_files) > 0:
+    if list_files:
         if reverse:
             list_files = reversed(list_files)
 
@@ -383,16 +393,17 @@ def rename(list_files, reverse=False):
                 # case-insensitive (such as FAT32 or NTFS) where e. g. the
                 # file "FOOBAR.txt" would overwrite the file "foobar.txt"
                 # inside the same directory.
-                if item[1] == None or \
+                if item[1] is None or \
                    item[1] == "":
                     os.rename(item[0], item[2])
                 else:
                     os.rename(item[0], item[1])
                     os.rename(item[1], item[2])
 
-        if len(list_skipped) > 0:
-            if not list_skipped == list_files:
+        if list_skipped:
+            if list_skipped != list_files:
                 rename(list_skipped, reverse)
+
 
 def report(report_file=None, list_header=[], list_renamed=[],
            list_excluded=[], list_skipped=[], time_start=None):
@@ -400,7 +411,7 @@ def report(report_file=None, list_header=[], list_renamed=[],
         Write the details of the simulated rename process (simulation report)
         into a file.
     """
-    files_total = str(len(list_renamed) + len(list_excluded) + \
+    files_total = str(len(list_renamed) + len(list_excluded) +
                       len(list_skipped))
     just = len(files_total)
     files_renamed = str(len(list_renamed)).rjust(just, " ")
@@ -433,20 +444,20 @@ def report(report_file=None, list_header=[], list_renamed=[],
               "\r\nNomen version:      " + __version__ + \
               "\r\n" + "=" * 78 + "\r\n\r\n"
 
-    if len(list_renamed) > 0:
+    if list_renamed:
         output += "\r\n  [Renamed]\r\n"
         for item in list_renamed:
             output += "    - Old: %s\r\n" % item[0]
             output += "    - New: %s\r\n\r\n" % item[2]
         output += "\r\n"
 
-    if len(list_excluded) > 0:
+    if list_excluded:
         output += "\r\n  [Excluded]\r\n"
         for item in list_excluded:
             output += "    - %s\r\n" % item
         output += "\r\n"
 
-    if len(list_skipped) > 0:
+    if list_skipped:
         output += "\r\n  [Skipped]\r\n"
         for item in list_skipped:
             output += "    - %s\r\n" % item
@@ -461,6 +472,7 @@ def report(report_file=None, list_header=[], list_renamed=[],
         fh_report.write(output.encode(sys.getdefaultencoding()))
 
     fh_report.close()
+
 
 def __get_files(directory, ignore_case, regex, regex_exclude, ignore_symlinks,
                 recursive, list_content, list_excluded, order_by):
@@ -477,7 +489,7 @@ def __get_files(directory, ignore_case, regex, regex_exclude, ignore_symlinks,
             if os.path.islink(path):
                 continue
         if os.path.isfile(path):
-            if regex == None:
+            if regex is None:
                 list_files.append(path)
             else:
                 if regex_exclude:
@@ -505,8 +517,8 @@ def __get_files(directory, ignore_case, regex, regex_exclude, ignore_symlinks,
         else:
             list_dirs.append(path)
 
-    if len(list_files) > 0:
-        if order_by == None:
+    if list_files:
+        if order_by is None:
             list_files.sort()
         else:
             list_files = __set_order(list_files, order_by)
@@ -520,6 +532,7 @@ def __get_files(directory, ignore_case, regex, regex_exclude, ignore_symlinks,
                             list_excluded, order_by)
 
     return list_content, list_excluded
+
 
 def __set_order(file_list, order_by):
     """
@@ -552,4 +565,3 @@ def __set_order(file_list, order_by):
     return list_files
 
 # EOF
-

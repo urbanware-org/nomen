@@ -13,12 +13,12 @@
 
 __version__ = "2.3.5"
 
-from . import common
 import os
-from . import paval as pv
 import re
-
 from datetime import datetime as dt
+from . import common
+from . import paval as pv
+
 
 def convert_case(directory, case, conflict_mode, recursive=False,
                  report_file=None, ignore_symlinks=False):
@@ -35,7 +35,7 @@ def convert_case(directory, case, conflict_mode, recursive=False,
     if not directory.endswith(os.path.sep):
         directory += os.path.sep
 
-    if report_file == None:
+    if report_file is None:
         simulate = False
     else:
         pv.path(report_file, "report", True, False)
@@ -74,11 +74,13 @@ def convert_case(directory, case, conflict_mode, recursive=False,
     else:
         common.rename(list_renamed)
 
+
 def get_version():
     """
         Return the version of this module.
     """
     return __version__
+
 
 def rename_extensions(directory, conflict_mode, extension, extension_target,
                       recursive=False, ignore_case=True, report_file=None,
@@ -98,7 +100,7 @@ def rename_extensions(directory, conflict_mode, extension, extension_target,
     if not directory.endswith(os.path.sep):
         directory += os.path.sep
 
-    if report_file == None:
+    if report_file is None:
         simulate = False
     else:
         pv.path(report_file, "report", True, False)
@@ -114,7 +116,7 @@ def rename_extensions(directory, conflict_mode, extension, extension_target,
     list_skipped = []
 
     if ";" in extension:
-        while (";" * 2) in extension:
+        while ";" * 2 in extension:
             extension = extension.replace((";" * 2), ";")
 
         list_temp = extension.split(";")
@@ -122,8 +124,8 @@ def rename_extensions(directory, conflict_mode, extension, extension_target,
             if not extension == "":
                 list_extensions.append(extension)
 
-        if len(list_extensions) == 0:
-            raise Exception("The given extension list does not contain any " \
+        if not list_extensions:
+            raise Exception("The given extension list does not contain any "
                             "extensions.")
     else:
         list_extensions.append(extension)
@@ -164,6 +166,7 @@ def rename_extensions(directory, conflict_mode, extension, extension_target,
     else:
         common.rename(list_renamed)
 
+
 def __convert_case(list_files, list_renamed, list_skipped, case,
                    conflict_mode, recursive):
     """
@@ -189,7 +192,7 @@ def __convert_case(list_files, list_renamed, list_skipped, case,
             extension_target = file_ext.upper()
 
         file_newpath = file_path.replace(file_ext, extension_target)
-        if (file_path == file_newpath):
+        if file_path == file_newpath:
             list_skipped.append(file_path)
             continue
 
@@ -221,6 +224,7 @@ def __convert_case(list_files, list_renamed, list_skipped, case,
                                  file_newpath])
 
     return list_renamed, list_skipped
+
 
 def __rename_extensions(list_files, list_extensions, list_renamed,
                         list_skipped, conflict_mode, extension_target):
@@ -275,4 +279,3 @@ def __rename_extensions(list_files, list_extensions, list_renamed,
     return list_renamed, list_skipped
 
 # EOF
-
