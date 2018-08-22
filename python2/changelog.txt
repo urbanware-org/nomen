@@ -1,0 +1,195 @@
+
+CHANGELOG (Nomen)
+
+    Version 2.3.5 (2018-04-14)
+
+        + Added new versions of the Clap and PaVal core modules (replaced the
+          existing ones).
+
+        * Revised (refurbished) all components of the project in general
+          (negligible changes).
+
+    Version 2.3.4 (2016-07-12)
+
+        + Added a simple random string generator method to the Nomen Common
+          core module.
+
+        * Revised the confirmation prompt inside the Nomen Common core module
+          (now uses random strings instead of a fixed one).
+
+        # Fixed the type mismatch bug inside the Nomen File Renamer core
+          module (occurred in case a file had the correct prefix but without
+          a trailing number).
+
+    Version 2.3.3 (2016-06-20)
+
+        + Added a new feature to the Nomen File Renamer component that allows
+          to order the files by their access, creation and modification time.
+
+        # Fixed the maximum recursion depth exceeded bug inside the Nomen
+          Common core module (occurred under certain circumstances, only)
+
+    Version 2.3.2 (2016-05-19)
+
+        * Revised some code inside the Nomen Directory Name Space Modifier
+          script changes).
+
+        # Fixed the path referenced before assignment bug inside the Nomen
+          Common core module (occurred under certain circumstances, only).
+
+    Version 2.3.1 (2016-05-17)
+
+        + Added a basic exclude feature to the Nomen Directory Name Space
+          Modifier script (case-insensitive, without regex syntax).
+
+        # Fixed the character replacement bug inside a method of the Nomen
+          Common core module (used by Nomen Directory Name Space Modifier)
+          which occurred when the recurisve parameter was set.
+
+    Version 2.3.0 (2016-04-16)
+
+        + Added a new feature to the Nomen File Renamer component that allows
+          user-defined steps between each numeric ID.
+
+        * Revised some code inside the Nomen Common core module (negligible
+          changes).
+        * Revised some parameter validation code in various core modules.
+
+    Version 2.2.6 (2015-06-05)
+
+        + Added some additional command-line arguments to the Nomen Directory
+          Name Space Modifier script to insert and remove spaces around
+          brackets and hyphens.
+
+        * Revised some code inside the Nomen Common core module (negligible
+          changes).
+
+        # Fixed the character replacement bug inside a method of the Nomen
+          Common core module (used by Nomen Directory Name Space Modifier).
+
+    Version 2.2.5 (2015-01-24)
+
+        + Added an optional feature to the Nomen Directory Name Space Modifier
+          (former "Nomen Directory Name Space Remover") to insert and remove
+          spaces next to punctuation characters.
+
+        * Revised the confirmation prompt inside the Nomen Common core module.
+
+    Version 2.2.4 (2015-01-03)
+
+        * Revised the code for handling regular expressions inside the core
+          modules.
+
+        - Removed unnecessary imports and unused variables from the core
+          modules.
+
+    Version 2.2.3 (2014-08-25)
+
+        + Added the Nomen Directory Name Space Remover component.
+
+        * Revised (enhanced) the Nomen Common core module.
+
+    Version 2.2.2 (2014-06-28)
+
+        + Added a feature that allows omitting the config file path if the
+          file is located in the corresponding config sub-directory.
+
+        * Revised the method to parse the case config files inside the Nomen
+          Static Case core module (added default values).
+
+    Version 2.2.1 (2014-05-22)
+
+        + Added an optional command-line argument to the Nomen File Name
+          Modifier script to remove certain leading and trailing characters
+          from the processed base name.
+
+        # Fixed the file skip bug inside the Nomen File Name Modifier module
+          when processing files whose base name contains dots.
+
+    Version 2.2.0 (2014-05-16)
+
+        + Added the new Nomen File Name Modifier component.
+
+        * Revised (reduced) some code inside the Nomen Static Case core
+          module.
+        * Revised (renamed) some command-line arguments inside all scripts
+          (for more clarity).
+
+        - Removed some unnecessary code from the Nomen File Renamer core
+          module.
+
+    Version 2.1.6 (2014-05-14)
+
+        + Added a method to the Nomen Common core module that returns invalid
+          file name characters.
+
+        * Revised (reduced) some code inside the Nomen File Renamer as the
+          well as Nomen Extension Renamer core module (negligible changes).
+        * Revised the list of invalid file name characters.
+
+    Version 2.1.5 (2014-04-22)
+
+        * Revised (reduced) the code inside the Nomen Common core module that
+          determines if a file with the new name already exists.
+        * Revised (reduced) the code inside the Nomen Common core module that
+          determines the case sensitivity of the file system.
+
+        # Fixed the rename bug ("no such file or directory") inside the Nomen
+          Common core module when renaming files using the "rename-new" or
+          "fill-gaps" mode (only occurred on case-insensitive file systems).
+
+    Version 2.1.4 (2014-04-19)
+
+        # Fixed the attribute error inside the code of the Nomen Common core
+          module that determines if a file with the new name already exists.
+        # Fixed the file system case sensitivity bug inside Nomen Common core
+          module (which did not determine the case sensitivity properly).
+        # Fixed the list bug inside the Nomen File Renamer core module (which
+          did not append all skipped files to the list when using "fill-gaps"
+          mode).
+
+    Version 2.1.3 (2014-04-12)
+
+        + Added an optional command-line argument to the Nomen File Renamer
+          script to set a custom file name.
+
+        * Revised the message text of some exceptions (for more clarity).
+
+    Version 2.1.2 (2014-03-28)
+
+        * Revised (reduced) the code inside the Nomen Common core module to
+          check if a file already has been processed.
+        * Revised the code inside the Nomen Common core module to check if the
+          file system is case-sensitive.
+
+    Version 2.1.1 (2014-03-22)
+
+        + Added an optional command-line argument to the Nomen File Renamer
+          script to ignore the file extension when numerating files.
+        + Added the estimated time to the simulation report file.
+
+        * Revised (reduced) some code inside the Nomen Common core module.
+
+        # Fixed the overwrite bug that occurred due to different cases of the
+          file extensions when renaming files via the Nomen File Renamer on
+          case-insensitive file systems (such as FAT32 and NTFS).
+
+    Version 2.1.0 (2014-03-19)
+
+        * Revised the "fill" rename methods (merged them to one method and
+          removed unused variables) inside the Nomen File Renamer core module.
+        * Revised (changed) the names of the rename modes inside the Nomen
+          File Renamer component (for more clarity).
+        * Revised the way of renaming files (numeration is now dependent of
+          the file extension) inside the Nomen File Renamer core module.
+
+        # Fixed the attribute error inside the Nomen Common core module when
+          reading out the major version of the Python framework using Python
+          version 2.6 or below.
+        # Fixed the empty list bug inside the Nomen File Renamer core module
+          (which terminated the whole file rename process, if occurred).
+
+    Version 2.0.0 (2014-03-18)
+
+        * First official release of this major version.
+

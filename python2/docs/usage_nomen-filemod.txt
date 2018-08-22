@@ -1,0 +1,376 @@
+
+USAGE (nomen-filemod.py)
+
+    Contents:
+
+        1.  Definition
+        2.  General stuff
+          2.1  How to run Python scripts
+          2.2  Overview of all command-line arguments
+          2.3  Warning
+          2.4  Simulation mode
+          2.5  Prefixes and suffixes
+        3.  Add a user-defined string to file names
+          3.1  Add a prefix
+          3.2  Add a suffix
+        4.  Remove a user-defined string from file names
+          4.1  Remove a prefix
+          4.2  Remove a suffix
+          4.3  Remove a string
+        5.  Replace a user-defined string inside file names
+          5.1  Replace a prefix
+          5.2  Replace a suffix
+          5.3  Replace a string
+        6.  Strip file names
+        7.  Exclude certain files
+        8.  Rename certain files only
+
+    1. Definition
+
+        The Nomen File Name Modifier script adds, removes or replaces a user-
+        defined string inside the base name of files.
+
+    2. General stuff
+
+        2.1 How to run Python scripts
+
+            All usage examples below show how to execute the Python scripts on
+            the shell of a Unix-like system. If you do not know, how to run
+            those scripts on your operating system, you may have a look at
+            this page:
+
+                http://www.urbanware.org/howto_python.html
+
+        2.2 Overview of all command-line arguments
+
+            Usually, each script requires command-line arguments to operate.
+            So, to get an overview of all arguments available, simply run the
+            script with the "--help" argument. For example:
+
+                $ ./nomen-filemod.py --help
+
+        2.3 Warning
+
+            Please use this tool with care to avoid data damage or loss!
+
+            It is strongly recommended to simulate every rename process first
+            to check which files would have been renamed. As a matter of fact,
+            there is no function to undo the changes done by this tool, so you
+            should be aware of what you are doing. If not, do NOT use this
+            tool.
+
+            Improper use (e. g. modifying files inside system directories)
+            will corrupt your system!
+
+        2.4 Simulation mode
+
+            As already mentioned above, before renaming any files, you should
+            simulate the rename process by using the "--simulate" argument.
+
+            This argument requires a file path where the report of the rename
+            process will be written to. When in simulation mode, no files will
+            be renamed at all.
+
+            So, if you have a command line like this
+
+                ./nomen-filemod.py -d /tmp/pics -a add -p prefix -s "Foobar"
+
+            but want to simulate the rename process and write the report into
+            the file "/tmp/report.txt", simply add the argument
+
+                --simulate /tmp/report.txt
+
+            to the command line:
+
+                ./nomen-filemod.py -d /tmp/pics -a add -p prefix -s "Foobar" \
+                                   --simulate /tmp/report.txt
+
+        2.5 Prefixes and suffixes
+
+            Typically a file name consists of a base name (prefix) and an
+            extension (suffix) separated by a separator, for example:
+
+                holiday.jpg
+
+            In this case, "holiday" is the base name, the dot is the separator
+            and "jpg" is the extension of the file.
+
+            The Nomen File Name Modifier only modifies the base name of file
+            names. The "--position" argument expects either "any", "prefix" or
+            "suffix". These positions are only related to the base name, not
+            to the entire file name.
+
+            For example, if you add the prefix "foo" to the base name it would
+            result in
+
+                fooholiday.jpg
+
+            and if you add the suffix "foo" (instead of the prefix) the base
+            name would look as follows:
+
+                holidayfoo.jpg
+
+            As already mentioned above, only the base name (the prefix of the
+            whole file name) will be modified and the file extension (the
+            suffix of the whole file name) will be ignored.
+
+    3. Add a user-defined string to file names
+
+        Before modifying the base name of any files, please see section 2.5
+        above. Notice that the given input string is processed case-sensitive.
+
+        3.1 Add a prefix
+
+            For example, if you have the files
+
+                holiday 1.jpg
+                holiday 2.jpg
+                holiday 3.jpg
+                holiday 4.jpg
+
+            inside the directory "/tmp/pics" and want to add the string
+            "Summer " (without any quotes) as prefix to the base name of these
+            files, type:
+
+                ./nomen-filemod.py -d /tmp/pics -a add -p prefix -s "Summer "
+
+            This will rename the base name of the files as follows:
+
+                Summer holiday 1.jpg
+                Summer holiday 2.jpg
+                Summer holiday 3.jpg
+                Summer holiday 4.jpg
+
+        3.2 Add a suffix
+
+            For example, if you have the files
+
+                Holiday 1.jpg
+                Holiday 2.jpg
+                Holiday 3.jpg
+                Holiday 4.jpg
+
+            inside the directory "/tmp/pics" and want to add the string
+            " - Foobar" (without any quotes) as suffix to the base name of
+            these files, type:
+
+                ./nomen-filemod.py -d /tmp/pics -a add -p suffix \
+                                   -s " - Foobar"
+
+            This will rename the base name of the files as follows:
+
+                Holiday 1 - Foobar.jpg
+                Holiday 2 - Foobar.jpg
+                Holiday 3 - Foobar.jpg
+                Holiday 4 - Foobar.jpg
+
+    4. Remove a user-defined string from file names
+
+        Before modifying the base name of any files, please see section 2.5
+        above. Notice that the given input string is processed case-sensitive.
+
+        4.1 Remove a prefix
+
+            For example, if you have the files
+
+                Summer holiday 1.jpg
+                Summer holiday 2.jpg
+                Summer holiday 3.jpg
+                Summer holiday 4.jpg
+
+            inside the directory "/tmp/pics" and want to remove the prefix
+            "Summer " (without any quotes) from the base name of these files,
+            type:
+
+                ./nomen-filemod.py -d /tmp/pics -a remove -p prefix \
+                                   -s "Summer "
+
+            This will rename the base name of the files as follows:
+
+                holiday 1.jpg
+                holiday 2.jpg
+                holiday 3.jpg
+                holiday 4.jpg
+
+        4.2 Remove a suffix
+
+            For example, if you have the files
+
+                Holiday 1 - Foobar.jpg
+                Holiday 2 - Foobar.jpg
+                Holiday 3 - Foobar.jpg
+                Holiday 4 - Foobar.jpg
+
+            inside the directory "/tmp/pics" and want to remove the suffix
+            " - Foobar" (without any quotes) from the base name of these
+            files, type:
+
+                ./nomen-filemod.py -d /tmp/pics -a remove -p suffix \
+                                   -s " - Foobar"
+
+            This will rename the base name of the files as follows:
+
+                Holiday 1.jpg
+                Holiday 2.jpg
+                Holiday 3.jpg
+                Holiday 4.jpg
+
+        4.3 Remove a string
+
+            This will remove all occurrences of the input string (no matter if
+            prefix, suffix or somewhere else) in the base name.
+
+            For example, if you have the files
+
+                Foobar Holiday Foobar 1.jpg
+                Foobar Holiday Foobar 2.jpg
+                Foobar Holiday Foobar 3.jpg
+                Foobar Holiday Foobar 4.jpg
+
+            inside the directory "/tmp/pics" and want to remove the string
+            "Foobar " (without any quotes) from the base name of these files,
+            type:
+
+                ./nomen-filemod.py -d /tmp/pics -a remove -p any -s "Foobar "
+
+            This will rename the base name of the files as follows:
+
+                Holiday 1.jpg
+                Holiday 2.jpg
+                Holiday 3.jpg
+                Holiday 4.jpg
+
+    5. Replace a user-defined string inside file names
+
+        Before modifying the base name of any files, please see section 2.5
+        above. Notice that the given string (input and replace string) are
+        processed case-sensitive.
+
+        5.1 Replace a prefix
+
+            For example, if you have the files
+
+                Winter holiday 1.jpg
+                Winter holiday 2.jpg
+                Winter holiday 3.jpg
+                Winter holiday 4.jpg
+
+            inside the directory "/tmp/pics" and want to replace the prefix
+            "Winter " with "Summer " (both without any quotes) inside the base
+            name of these files, type:
+
+                ./nomen-filemod.py -d /tmp/pics -a replace -p prefix \
+                                   -s "Winter " --replace-string "Summer "
+
+            This will rename the base name of the files as follows:
+
+                Summer holiday 1.jpg
+                Summer holiday 2.jpg
+                Summer holiday 3.jpg
+                Summer holiday 4.jpg
+
+        5.2 Replace a suffix
+
+            For example, if you have the files
+
+                Holiday 1 - Foobar.jpg
+                Holiday 2 - Foobar.jpg
+                Holiday 3 - Foobar.jpg
+                Holiday 4 - Foobar.jpg
+
+            inside the directory "/tmp/pics" and want to replace the suffix
+            " - Foobar" with " Foo" (both without any quotes) inside the base
+            name of these files, type:
+
+                ./nomen-filemod.py -d /tmp/pics -a replace -p suffix \
+                                   -s " - Foobar" --replace-string " Foo"
+
+            This will rename the base name of the files as follows:
+
+                Holiday 1 Foo.jpg
+                Holiday 2 Foo.jpg
+                Holiday 3 Foo.jpg
+                Holiday 4 Foo.jpg
+
+        5.3 Replace a string
+
+            This will replace all occurrences of the input string (no matter
+            if prefix, suffix or somewhere else) in the base name.
+
+            For example, if you have the files
+
+                Fu - Fubar - Fu 1.jpg
+                Fu - Fubar - Fu 2.jpg
+                Fu - Fubar - Fu 3.jpg
+                Fu - Fubar - Fu 4.jpg
+
+            inside the directory "/tmp/pics" and want to replace the string
+            "Fu" with "Foo" (both without any quotes) inside the base name of
+            these files, type:
+
+                ./nomen-filemod.py -d /tmp/pics -a replace -p any -s "Fu" \
+                                   --replace-string "Foo"
+
+            This will rename the base name of the files as follows:
+
+                Foo - Foobar - Foo 1.jpg
+                Foo - Foobar - Foo 2.jpg
+                Foo - Foobar - Foo 3.jpg
+                Foo - Foobar - Foo 4.jpg
+
+    6. Strip file names
+
+        You can also remove certain leading and trailing characters (such as
+        whitespaces) from the file name. For example, if you have the file
+
+            Foo Holiday 1 Foo.jpg
+
+        and want to remove the string "Foo" inside the entire file name, you
+        can do this using
+
+            ./nomen-filemod.py -d /tmp/pics -a remove -p any -s "Foo"
+
+        but this would result in a file name with a leading as well as a
+        trailing whitespace (" Holiday 1 .jpg").
+
+        Now, there are multiple ways to remove these whitespaces. The first
+        way would be explicitly removing the prefix and suffix containing the
+        whitespace.
+
+            ./nomen-filemod.py -d /tmp/pics -a remove -p prefix -s "Foo "
+            ./nomen-filemod.py -d /tmp/pics -a remove -p suffix -s " Foo"
+
+        Another way would be removing the string "Foo" first and after that
+        the leading and trailing whitespaces separately.
+
+            ./nomen-filemod.py -d /tmp/pics -a remove -p any -s "Foo"
+            ./nomen-filemod.py -d /tmp/pics -a remove -p prefix -s " "
+            ./nomen-filemod.py -d /tmp/pics -a remove -p suffix -s " "
+
+        The simplest way would be using the included command-line argument:
+
+            ./nomen-filemod.py -d /tmp/pics -a remove -p any -s "Foo" \
+                               --strip " "
+
+        The "--strip" argument also allows giving multiple characters that
+        should be stripped. For example, to strip the letter "H" in uppercase
+        as well as whitespaces, type:
+
+            ./nomen-filemod.py -d /tmp/pics -a remove -p any -s "Foo" \
+                               --strip "H "
+
+        However, this will result in "oliday 1.jpg", due to the fact, that the
+        list of strip characters will not be processed in a certain order.
+
+    7.  Exclude certain files
+
+        See section 4 of the documentation of the Nomen File Renamer script
+        how to do this. The command-line arguments to exclude files used there
+        can also be applied to the Nomen File Modifier script.
+
+    8.  Rename certain files only
+
+        See section 5 of the documentation of the Nomen File Renamer script
+        how to do this. The command-line arguments to rename files only used
+        there can also be applied to the Nomen File Modifier script.
+

@@ -1,0 +1,195 @@
+
+USAGE (nomen-dirspace.py)
+
+    Contents:
+
+        1.  Definition
+        2.  General stuff
+          2.1  How to run Python scripts
+          2.2  Overview of all command-line arguments
+          2.3  Warning
+          2.4  Simulation mode
+          2.5  Identical directory names
+        3.  Remove spaces from directory names
+          3.1  Duplicate spaces
+          3.2  Leading spaces
+          3.3  Trailing spaces
+          3.4  Duplicate, leading as well as trailing spaces
+        4.  Spaces next to certain characters
+          4.1  Brackets
+          4.2  Hyphens
+          4.3  Punctuation characters
+
+    1. Definition
+
+        The Nomen Directory Name Space Modifier (former "Nomen Directory Name
+        Space Remover") script modifies a directory name by removing leading,
+        trailing and duplicate spaces or by inserting and removing spaces next
+        to punctuation characters.
+
+    2. General stuff
+
+        2.1 How to run Python scripts
+
+            All usage examples below show how to execute the Python scripts on
+            the shell of a Unix-like system. If you do not know, how to run
+            those scripts on your operating system, you may have a look at
+            this page:
+
+                http://www.urbanware.org/howto_python.html
+
+        2.2 Overview of all command-line arguments
+
+            Usually, each script requires command-line arguments to operate.
+            So, to get an overview of all arguments available, simply run the
+            script with the "--help" argument. For example:
+
+                $ ./nomen-dirspace.py --help
+
+        2.3 Warning
+
+            Please use this tool with care to avoid data damage or loss!
+
+            As a matter of fact, there is no function to undo the changes done
+            by this tool, so you should be aware of what you are doing. If
+            not, do NOT use this tool.
+
+            Improper use (e. g. modifying system directories) will corrupt
+            your system!
+
+        2.4 Simulation mode
+
+            Due to the fact that this tool simply removes unnecessary spaces
+            in directory names, it does not provide any simulation mode.
+
+        2.5 Identical directory names
+
+            For example, if you have the directories
+
+                /tmp/pics/My Holiday/
+                /tmp/pics/My    Holiday/
+
+            and want to remove the duplicate spaces, both directories would
+            have the same name after performing the space removal operation.
+            Due to this, they would be combined and the data inside of them
+            would get mixed up.
+
+            To avoid this, the Nomen Directory Name Space Remover script does
+            not remove the spaces from a directory if another directory with
+            the new name already exists. The directory will simply be ignored,
+            but the script will process its sub-directories if the recursive
+            command-line argument was given.
+
+    3. Remove spaces from directory names
+
+        The following operations can also be combined using the corresponding
+        command-line arguments (as described in section 3.4).
+
+        3.1 Duplicate spaces
+
+            For example, if you have the following directory
+
+                /tmp/pics/My    Holiday/
+
+            and you want to remove the duplicate spaces, type:
+
+                ./nomen-dirspace.py -d /tmp/pics/ -s
+
+        3.2 Leading spaces
+
+            For example, if you have the following directory
+
+                /tmp/pics/    My Holiday/
+
+            and you want to remove the leading spaces, type:
+
+                ./nomen-dirspace.py -d /tmp/pics/ -l
+
+        3.3 Trailing spaces
+
+            For example, if you have the following directory
+
+                /tmp/pics/My Holiday    /
+
+            and you want to remove the trailing spaces, type:
+
+                ./nomen-dirspace.py -d /tmp/pics/ -t
+
+        3.4 Duplicate, leading as well as trailing spaces
+
+            For example, if you have the following directory
+
+                /tmp/pics/    My   Holiday    /
+
+            and you want to remove the duplicate, leading and trailing spaces,
+            type:
+
+                ./nomen-dirspace.py -d /tmp/pics/ -s -l -t
+
+    4. Spaces next to certain characters
+
+        The Nomen Directory Name Space Modifier also allows inserting and
+        removing spaces next to certain characters such as brackets, dashes
+        and punctuation characters. These are automated processes without any
+        further options.
+
+        The following command-line arguments can be combined with those
+        mentioned in section 3 as well as with each other.
+
+        Please notice that inserting spaces may result in duplicate spaces
+        again. So, when using the following command-line arguments it is
+        recommended to also add the "-s" (or "--remove-duplicate") argument
+        (as shown in the examples below).
+
+        4.1 Brackets
+
+            The "-b" (or "--brackets") command-line argument will remove all
+            unnecessary spaces around brackets. For example, if you have a
+            directory like this
+
+                /tmp/music/    Foo( Bar [  Album ]  )  /
+
+            and run Nomen Directory Name Space Modifier with the corresponding
+            argument
+
+                ./nomen-dirspace.py -d /tmp/music/ -s -b
+
+            the directory will be changed as follows:
+
+                /tmp/music/Foo (Bar [Album])/
+
+        4.2 Hyphens
+
+            The --hyphens" command-line argument will add additional spaces
+            around hyphens ("-").
+
+                /tmp/music/   John Doe -Foo   /
+
+            and run Nomen Directory Name Space Modifier with the corresponding
+            argument
+
+                ./nomen-dirspace.py -d /tmp/music/ -s -p
+
+            the directory will be changed as follows:
+
+                /tmp/music/John Doe - Foo/
+
+        4.3 Punctuation characters
+
+            The "-p" (or "--punctuation") command-line argument will remove
+            all unnecessary spaces around the punctuation characters such as
+            dots ("."), commas (","), colons (":"), semi-colons (";") as well
+            as exclamation ("!") and question marks ("?"). Furthermore, it
+            adds spaces next to them when necessary.
+
+                /tmp/music/    Foo,Bar feat.John Doe - Foo !   /
+
+            and run Nomen Directory Name Space Modifier with the corresponding
+            argument
+
+                ./nomen-dirspace.py -d /tmp/music/ -s -p
+
+            the directory will be changed as follows:
+
+                /tmp/music/Foo, Bar feat. John Doe - Foo!/
+

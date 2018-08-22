@@ -1,0 +1,126 @@
+
+USAGE (nomen-extcase.py)
+
+    Contents:
+
+        1.  Definition
+        2.  General stuff
+          2.1  How to run Python scripts
+          2.2  Overview of all command-line arguments
+          2.3  Warning
+          2.4  Simulation mode
+        3.  Convert the case of file extensions
+          3.1  Rename mode
+          3.2  Skip mode
+
+    1. Definition
+
+        The Nomen Extension Case Converter script converts the case of the
+        extension of all files inside a directory and (if requested) in all of
+        its sub-directories.
+
+    2. General stuff
+
+        2.1 How to run Python scripts
+
+            All usage examples below show how to execute the Python scripts on
+            the shell of a Unix-like system. If you do not know, how to run
+            those scripts on your operating system, you may have a look at
+            this page:
+
+                http://www.urbanware.org/howto_python.html
+
+        2.2 Overview of all command-line arguments
+
+            Usually, each script requires command-line arguments to operate.
+            So, to get an overview of all arguments available, simply run the
+            script with the "--help" argument. For example:
+
+                $ ./nomen-extcase.py --help
+
+        2.3 Warning
+
+            Please use this tool with care to avoid data damage or loss!
+
+            It is strongly recommended to simulate every rename process first
+            to check which files would have been renamed. As a matter of fact,
+            there is no function to undo the changes done by this tool, so you
+            should be aware of what you are doing. If not, do NOT use this
+            tool.
+
+            Improper use (e. g. modifying files inside system directories)
+            will corrupt your system!
+
+        2.4 Simulation mode
+
+            As already mentioned above, before renaming any files, you should
+            simulate the rename process by using the "--simulate" argument.
+
+            This argument requires a file path where the report of the rename
+            process will be written to. When in simulation mode, no files will
+            be renamed at all.
+
+            So, if you have a command line like this
+
+                ./nomen-extcase.py -m rename -c lower -d /tmp/pics/Holidays
+
+            but want to simulate the rename process and write the report into
+            the file "/tmp/report.txt", simply add the argument
+
+                --simulate /tmp/report.txt
+
+            to the command line:
+
+                ./nomen-extcase.py -m rename -c lower -d /tmp/pics/Holidays \
+                                   --simulate /tmp/report.txt
+
+    3. Convert the case of file extensions
+
+        For example, you have two picture files inside a directory called
+        "Holidays" with these extensions
+
+            Holidays 1.JPG
+            Holidays 2.Jpg
+
+        and you convert the extension case to lowercase, the file extensions
+        will look like this:
+
+            Holidays 1.jpg
+            Holidays 2.jpg
+
+        But, for example, if file system is case senstive and the directory
+        contains the files
+
+            Holidays 1.JPG
+            Holidays 1.Jpg
+
+        there would be a problem converting the file extension case, because
+        both target file names would be identical. So, to avoid that, the
+        script also offers two operating modes.
+
+        3.1 Rename mode
+
+            The "rename mode" adds a numeric ID to the duplicate target file
+            and converts the file extension:
+
+                Holidays 1.JPG      will be renamed to "Holidays 1.jpg"
+                Holidays 1.Jpg      will be renamed to "Holidays 1_1.jpg"
+
+            To use this mode and convert the file extensions to lowercase,
+            type:
+
+                ./nomen-extcase.py -m rename -c lower -d /tmp/pics/Holidays
+
+        3.2 Skip mode
+
+            The "skip mode" simply skips the files where converting the case
+            of the file extension would result in duplicate file names:
+
+                Holidays 1.JPG      will be renamed to "Holidays 1.jpg"
+                Holidays 1.Jpg      will be skipped
+
+            To use this mode and convert the file extensions to lowercase,
+            type:
+
+                ./nomen-extcase.py -m skip -c lower -d /tmp/pics/Holidays
+

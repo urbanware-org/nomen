@@ -1,0 +1,134 @@
+
+USAGE (nomen-extren.py)
+
+    Contents:
+
+        1.  Definition
+        2.  General stuff
+          2.1  How to run Python scripts
+          2.2  Overview of all command-line arguments
+          2.3  Warning
+          2.4  Simulation mode
+        3.  Rename file extensions
+          3.1  Rename mode
+          3.2  Skip mode
+
+    1. Definition
+
+        The Nomen Extension Renamer script renames (and adjusts) differently
+        spelled file extensions of the same file type file within a directory
+        and (if requested) in all of its sub-directories.
+
+    2. General stuff
+
+        2.1 How to run Python scripts
+
+            All usage examples below show how to execute the Python scripts on
+            the shell of a Unix-like system. If you do not know, how to run
+            those scripts on your operating system, you may have a look at
+            this page:
+
+                http://www.urbanware.org/howto_python.html
+
+        2.2 Overview of all command-line arguments
+
+            Usually, each script requires command-line arguments to operate.
+            So, to get an overview of all arguments available, simply run the
+            script with the "--help" argument. For example:
+
+                $ ./nomen-extren.py --help
+
+        2.3 Warning
+
+            Please use this tool with care to avoid data damage or loss!
+
+            It is strongly recommended to simulate every rename process first
+            to check which files would have been renamed. As a matter of fact,
+            there is no function to undo the changes done by this tool, so you
+            should be aware of what you are doing. If not, do NOT use this
+            tool.
+
+            Improper use (e. g. modifying files inside system directories)
+            will corrupt your system!
+
+        2.4 Simulation mode
+
+            As already mentioned above, before renaming any files, you should
+            simulate the rename process by using the "--simulate" argument.
+
+            This argument requires a file path where the report of the rename
+            process will be written to. When in simulation mode, no files will
+            be renamed at all.
+
+            So, if you have a command line like this
+
+                ./nomen-extren.py -m rename -d /tmp/pics/Holidays \
+                                  -e "JPG;JPEG" -t "jpg"
+
+            but want to simulate the rename process and write the report into
+            the file "/tmp/report.txt", simply add the argument
+
+                --simulate /tmp/report.txt
+
+            to the command line:
+
+                ./nomen-extren.py -m rename -d /tmp/pics/Holidays \
+                                  -e "JPG;JPEG" -t "jpg" \
+                                  --simulate /tmp/report.txt
+
+    3. Rename file extensions
+
+        For example, you have four picture files inside a directory called
+        "Holidays" with these extensions:
+
+            Holidays 1.jpg
+            Holidays 2.jpeg
+            Holidays 3.JPG
+            Holidays 4.Jpeg
+
+        All of these files are JPEG pictures, but their extensions are spelled
+        differently. So, the Nomen Extension Renamer script can be used to get
+        consistent file extensions:
+
+            Holidays 1.jpg
+            Holidays 2.jpg
+            Holidays 3.jpg
+            Holidays 4.jpg
+
+        But, for example, if file system is case senstive and the directory
+        contains the files
+
+            Holidays 1.Jpg
+            Holidays 1.jpeg
+
+        there would be a problem renaming the file extension, because both
+        file target names would be identical. So, to avoid that, the script
+        also offers two operating modes.
+
+        3.1 Rename mode
+
+            The "rename mode" adds a numeric ID to the duplicate target file
+            and converts the file:
+
+                Holidays 1.Jpg      will be renamed to "Holidays 1.jpg"
+                Holidays 1.jpeg     will be renamed to "Holidays 1_1.jpg"
+
+            To use this mode and rename the extensions of JPEG files,
+            type:
+
+                ./nomen-extren.py -m rename -d /tmp/pics/Holidays \
+                                  -e "JPG;JPEG" -t "jpg"
+
+        3.2 Skip mode
+
+            The "skip mode" simply skips the files where converting the case
+            of the file extension would result in duplicate file names:
+
+                Holidays 1.Jpg      will be renamed to "Holidays 1.jpg"
+                Holidays 1.jpeg     will be skipped
+
+            To use this mode and rename the extensions of JPEG files, type:
+
+                ./nomen-extren.py -m skip -d /tmp/pics/Holidays \
+                                  -e "JPG;JPEG" -t "jpg"
+

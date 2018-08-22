@@ -1,0 +1,496 @@
+
+USAGE (nomen-fileren.py)
+
+    Contents:
+
+        1.  Definition
+        2.  General stuff
+          2.1  How to run Python scripts
+          2.2  Overview of all command-line arguments
+          2.3  Warning
+          2.4  Simulation mode
+          2.5  Significant changes (released with version 2.1.0)
+             2.5.1  Names of the rename modes
+             2.5.2  Way of renaming files
+        3.  Rename files
+          3.1  Using "keep-order" mode
+             3.1.1  Order by name (default)
+             3.1.2  Order by access time
+             3.1.3  Order by creation time
+             3.1.4  Order by modification time
+          3.2  Using "rename-new" mode
+          3.3  Using "fill-gaps" mode
+        4.  Exclude certain files
+          4.1  Exclude certain files using basic strings
+          4.2  Exclude certain files using wildcards
+        5.  Rename certain files only
+          5.1  Rename certain files using basic strings
+          5.2  Rename certain files using wildcards
+        6.  Steps between each numeric ID
+          6.1  Issue before
+          6.2  Solution
+
+    1. Definition
+
+        The Nomen File Renamer script renames the base name of files within a
+        directory and (if requested) in all of its sub-directories based on
+        the name of the directory where the files are stored in and adds a
+        unique numeric ID.
+
+    2. General stuff
+
+        2.1 How to run Python scripts
+
+            All usage examples below show how to execute the Python scripts on
+            the shell of a Unix-like system. If you do not know, how to run
+            those scripts on your operating system, you may have a look at
+            this page:
+
+                http://www.urbanware.org/howto_python.html
+
+        2.2 Overview of all command-line arguments
+
+            Usually, each script requires command-line arguments to operate.
+            So, to get an overview of all arguments available, simply run the
+            script with the "--help" argument. For example:
+
+                $ ./nomen-fileren.py --help
+
+        2.3 Warning
+
+            Please use this tool with care to avoid data damage or loss!
+
+            It is strongly recommended to simulate every rename process first
+            to check which files would have been renamed. As a matter of fact,
+            there is no function to undo the changes done by this tool, so you
+            should be aware of what you are doing. If not, do NOT use this
+            tool.
+
+            Improper use (e. g. modifying files inside system directories)
+            will corrupt your system!
+
+        2.4 Simulation mode
+
+            As already mentioned above, before renaming any files, you should
+            simulate the rename process by using the "--simulate" argument.
+
+            This argument requires a file path where the report of the rename
+            process will be written to. When in simulation mode, no files will
+            be renamed at all.
+
+            So, if you have a command line like this
+
+                ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays
+
+            but want to simulate the rename process and write the report into
+            the file "/tmp/report.txt", simply add the argument
+
+                --simulate /tmp/report.txt
+
+            to the command line:
+
+                ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
+                                   --simulate /tmp/report.txt
+
+        2.5 Significant changes (released with version 2.1.0)
+
+            2.5.1 Names of the rename modes
+
+                Before Nomen version 2.0.0, there only were two rename modes,
+                "consecutive" and "fill".
+
+                In version 2.0.0 the "fill" mode has been forked into the two
+                modes "fillin" and "fillnew".
+
+                With the release of version 2.1.0, all these names have been
+                replaced with new ones for more clarity.
+
+                    +--------------------------+--------------------------+
+                    | Before                   | After                    |
+                    +--------------------------+--------------------------+
+                    | consecutive              | keep-order               |
+                    | fillin                   | fill-gaps                |
+                    | fillnew                  | rename-new               |
+                    +--------------------------+--------------------------+
+
+            2.5.2 Way of renaming files
+
+                In the past, the files have been renamed with a continuous
+                number ignoring the file type.
+
+                With the release of version 2.1.0, by default the file types
+                will not longer be ignored, so every file type has its own
+                range of numbers:
+
+                    +--------------------------+--------------------------+
+                    | Before                   | After                    |
+                    +--------------------------+--------------------------+
+                    | Picture_0001.bmp         | Picture_0001.bmp         |
+                    | Picture_0002.bmp         | Picture_0002.bmp         |
+                    | Picture_0003.jpg         | Picture_0001.jpg         |
+                    | Picture_0004.jpg         | Picture_0002.jpg         |
+                    | Picture_0005.png         | Picture_0001.png         |
+                    | Picture_0006.png         | Picture_0002.png         |
+                    +--------------------------+--------------------------+
+
+                However, with the "--ignore-file-ext" command-line argument
+                this behaviour can be changed, so the files will be renamed
+                with a continuous number ignoring the file type again.
+
+    3. Rename files
+
+        For example, if you have four picture files inside the directory
+        "/tmp/pics/Holidays":
+
+            pic_0001.jpg
+            pic_0002.jpg
+            pic_0003.jpg
+            pic_0004.jpg
+
+        Basically, the Nomen File Renamer script will rename the files inside
+        that directory based on the directory name where they are stored in
+        and add a unique numeric ID. For example:
+
+            Holidays 1.jpg
+            Holidays 2.jpg
+            Holidays 3.jpg
+            Holidays 4.jpg
+
+        The script offers some file rename modes.
+
+        3.1 Using "keep-order" mode
+
+            The "keep-order" mode keeps the chronological order even if files
+            have been deleted. There are multiple ways this mode can be used.
+
+            3.1.1 Order by name (default)
+
+                In case no order command-line argument was given, the default
+                behaviour will be used. For example, if you delete the picture
+                file "Holidays 2.jpg" and re-run the script with this rename
+                mode it will do the following:
+
+                    Holidays 1.jpg      stays (no need to rename)
+                    Holidays 3.jpg      will be renamed to "Holidays 2.jpg"
+                    Holidays 4.jpg      will be renamed to "Holidays 3.jpg"
+
+                Now, if you add another file to that directory, "foobar.jpg"
+                for example, and re-run the Nomen File Renamer script with
+                this rename mode, the new file will be appended to the
+                existing and already renamed files:
+
+                    Holidays 1.jpg      stays (no need to rename)
+                    Holidays 2.jpg      stays (no need to rename)
+                    Holidays 3.jpg      stays (no need to rename)
+                    foobar.jpg          will be renamed to "Holidays 4.jpg"
+
+                To use this rename mode, type:
+
+                    ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays
+
+                In case you want to reorganize these pictures, put them into a
+                new directory called "Summer" among with some other files and
+                re-run the script with this rename mode, the files will not be
+                renamed chronologically, but alphabetically. For example:
+
+                    Beach 1.jpg         will be renamed to "Summer 1.jpg"
+                    Beach 2.jpg         will be renamed to "Summer 2.jpg"
+                    Holidays 1.jpg      will be renamed to "Summer 3.jpg"
+                    Holidays 2.jpg      will be renamed to "Summer 4.jpg"
+                    Holidays 3.jpg      will be renamed to "Summer 5.jpg"
+                    Holidays 4.jpg      will be renamed to "Summer 6.jpg"
+
+                So, even if the "Beach" pictures are newer than the "Holidays"
+                pictures the files will be renamed like this.
+
+                You can also keep a certain order, for example, beginning with
+                the "Holidays" pictures followed by the "Beach" pictures. At
+                first, put only the "Holidays" pictures into the "Summer"
+                directory and run the script with this rename mode:
+
+                    Holidays 1.jpg      will be renamed to "Summer 1.jpg"
+                    Holidays 2.jpg      will be renamed to "Summer 2.jpg"
+                    Holidays 3.jpg      will be renamed to "Summer 3.jpg"
+                    Holidays 4.jpg      will be renamed to "Summer 4.jpg"
+
+                After that, put the "Beach" pictures in the "Summer" directory
+                and run the script with this mode again:
+
+                    Summer 1.jpg        stays (no need to rename)
+                    Summer 2.jpg        stays (no need to rename)
+                    Summer 3.jpg        stays (no need to rename)
+                    Summer 4.jpg        stays (no need to rename)
+                    Beach 1.jpg         will be renamed to "Summer 5.jpg"
+                    Beach 2.jpg         will be renamed to "Summer 6.jpg"
+
+            3.1.2  Order by access time
+
+                Please read section 3.1.1 above first before continuing with
+                this one.
+
+                You can also rename and order the files by the time they have
+                been accessed in ascending order. So, the file with the oldest
+                time will be the first one to be renamed.
+
+                However, the access time is not being determined by Nomen, it
+                is the timestamp provided by the metadata of the file.
+
+                Notice that this will irreversibly change the order of the
+                files.
+
+                To use this rename mode, type:
+
+                    ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
+                                       -o accessed
+
+            3.1.3  Order by creation time
+
+                Please read section 3.1.1 above first before continuing with
+                this one.
+
+                You can also rename and order the files by the time they have
+                been created in ascending order. So, the file with the oldest
+                time will be the first one to be renamed.
+
+                However, the creation time is not being determined by Nomen,
+                it is the timestamp provided by the metadata of the file.
+
+                Notice that this will irreversibly change the order of the
+                files.
+
+                According to the official Python documentation (see "Common
+                pathname manipulations"), the creation time information
+                depends on the operation system.
+
+                On some systems (like Unix) it is the time of the last change
+                of the metadata, and, on others (like Windows), is the
+                creation time of the file.
+
+                To use this rename mode, type:
+
+                    ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
+                                       -o created
+
+            3.1.4  Order by modification time
+
+                Please read section 3.1.1 above first before continuing with
+                this one.
+
+                You can also rename and order the files by the time they have
+                been modified in ascending order. So, the file with the oldest
+                time will be the first one to be renamed.
+
+                However, the modification time is not being determined by
+                Nomen, it is the timestamp provided by the metadata of the
+                file.
+
+                Notice that this will irreversibly change the order of the
+                files.
+
+                To use this rename mode, type:
+
+                    ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
+                                       -o modified
+
+        3.2 Using "rename-new" mode
+
+            The "rename-new" mode does NOT keep the chronological order if
+            files have been deleted. It simply fills the numeration gaps with
+            new files or files that have been renamed manually.
+
+            For example, if you delete the picture file "Holidays 2.jpg" and
+            re-run the Nomen File Renamer script with this rename mode, no
+            file names will be changed.
+
+                Holidays 1.jpg      stays (no need to rename)
+                Holidays 3.jpg      stays (no need to rename)
+                Holidays 4.jpg      stays (no need to rename)
+
+            If you then add another file to that directory, e. g. "foobar.jpg"
+            and re-run the script this rename mode again, it will simply fill
+            the gap "Holiday 2.jpg" has left using the new file:
+
+                Holidays 1.jpg      stays (no need to rename)
+                Holidays 3.jpg      stays (no need to rename)
+                Holidays 4.jpg      stays (no need to rename)
+                foobar.jpg          will be renamed to "Holidays 2.jpg"
+
+            To use this rename mode, type:
+
+                ./nomen-fileren.py -m rename-new -d /tmp/pics/Holidays
+
+        3.3 Using "fill-gaps" mode
+
+            The "fill-gaps" mode works like the "rename-new" mode (for details
+            see section 3.2) with the difference, that it fills all numeration
+            gaps using new as well as the existing files with the greatest
+            numbers. For example:
+
+                Holidays 1.jpg      stays (no need to rename)
+                Holidays 4.jpg      stays (no need to rename)
+                Holidays 5.jpg      will be renamed to "Holidays 3.jpg"
+                foobar.jpg          will be renamed to "Holidays 2.jpg"
+
+            To use this rename mode, type:
+
+                ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays
+
+    4. Exclude certain files
+
+        4.1 Exclude certain files using basic strings
+
+            For example, to exclude all files whose file name (base name or
+            extension) contains the string "foo", type:
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --exclude "foo"
+
+            By default, the given pattern is being processed case-insensitive.
+            That means, the string given above would match "foo" as well as
+            e. g. "FOO", "Foo", "FoO" and so on.
+
+            The pattern can also consist of multiple strings (separated with
+            semicolons):
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --exclude "foo2;foo4"
+
+        4.2 Exclude certain files using wildcards
+
+            The pattern also supports asterisk wildcards. So, if you want to
+            exclude all files whose file name (base name or extension)
+            contains a string that starts with "foo" and ends with "bar"
+            (e. g. "foobar", "foo-bar" or "foo bar"), type:
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --exclude "foo*bar"
+
+            The pattern can also consist of multiple strings (separated with
+            semicolons) with wildcards:
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --exclude "f*o;b*r"
+
+    5. Rename certain files only
+
+        5.1 Rename certain files using basic strings
+
+            So, for example, to only rename the files whose file name (base
+            name or extension) contains the string "foo", type:
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --explicit "foo"
+
+            By default, the given pattern is being processed case-insensitive.
+            That means, the string given above would match "foo" as well as
+            e. g. "FOO", "Foo", "FoO" and so on.
+
+            The pattern can also consist of multiple strings (separated with
+            semicolons):
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --explicit "foo2;foo4"
+
+        5.2 Rename certain files using wildcards
+
+            The pattern also supports asterisk wildcards. So, if you want to
+            only rename the files whose file name (base name or extension)
+            contains a string that starts with "foo" and ends with "bar"
+            (e. g. "foobar", "foo-bar" or "foo bar"), type:
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --explicit "foo*bar"
+
+            The pattern can also consist of multiple strings (separated with
+            semicolons) with wildcards:
+
+                $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
+                                     --explicit "f*o;b*r"
+
+    6. Steps between each numeric ID
+
+        Since version 2.3.0, it is also possible to set an additional user-
+        defined step value, which can be combined with all rename modes
+        mentioned in section 3 above.
+
+        Especially when using the the "keep-order" mode, adding new files to
+        existing ones between two numeric IDs was quite inconvenient. Below
+        you can find an example issue and its solution.
+
+        6.1 Issue before
+
+            There is a directory containing already renamed files and a new
+            one that should be between others like this
+
+                Holidays 1.jpg
+                Holidays 2.jpg
+                Holidays 3.jpg
+                pic_0001.jpg        should actually be "Holidays 2.jpg"
+
+            and running
+
+                ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays
+
+            would rename "pic_0001.jpg" to "Holidays 4.jpg", which is not
+            what we want.
+
+            One way to solve that is:
+
+                1. Create a new temporary sub-directory with a different name,
+                   for example "Temp".
+
+                2. Move all files whose names are starting with "Holdays" into
+                   that directory.
+
+                3. Then, run the Nomen File Renamer script again. The file
+                   "pic_0001.jpg" file will then renamed to "Holidays 2.jpg".
+
+                4. In case that the target directory has not been processed
+                   recursively before, run the script once again with the path
+                   of the sub-directory as target directory, so the term
+                   "Holidays" inside the file name will be replaced by "Temp".
+
+                5. Move all files from the temporary directory back into the
+                   directory where the "Holidays" files are.
+
+                6. Delete the temporary directory.
+
+                7. Now, run the Nomen File Renamer script a third time with
+                   the path of the directory that contains the "Holidays"
+                   files as the target directory again.
+
+        6.2 Solution
+
+            Now, before adding new files that should be between others, run
+            the Nomen File Renamer script (before adding new files) with a
+            user-defined step value, for example 10.
+
+                ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
+                                   --step 10
+
+            This will rename the files as follows:
+
+                Holidays 10.jpg
+                Holidays 20.jpg
+                Holidays 30.jpg
+
+            Then add the "pic_0001.jpg" file to that directiry and rename it
+            like "Holidays 11.jpg" (or with any number between 10 and 20).
+
+                Holidays 10.jpg      stays (no need to rename)
+                Holidays 11.jpg      will be renamed to "Holidays 20.jpg"
+                Holidays 20.jpg      will be renamed to "Holidays 30.jpg"
+                Holidays 30.jpg      will be renamed to "Holidays 3.jpg"
+
+            Now, run the Nomen File Renamer script once again
+
+                ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
+                                   --step 10
+
+            to apply the changes:
+
+                Holidays 10.jpg      stayed (no need to rename)
+                Holidays 20.jpg      was "Holidays 11.jpg" before
+                Holidays 30.jpg      was "Holidays 20.jpg" before
+                Holidays 40.jpg      was "Holidays 30.jpg" before
+

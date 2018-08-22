@@ -1,0 +1,186 @@
+
+USAGE (nomen-filecase.py)
+
+    Contents:
+
+        1.  Definition
+        2.  General stuff
+          2.1  How to run Python scripts
+          2.2  Overview of all command-line arguments
+          2.3  Warning
+          2.4  Simulation mode
+        3.  Convert the case of base names
+          3.1  Rename mode
+          3.2  Skip mode
+        4.  Using config files
+          4.1  With a certain target case
+          4.2  Without a certain target case
+
+    1. Definition
+
+        The Nomen File Name Case Converter script converts the case of the
+        base name of all files inside a directory and (if requested) in all of
+        its sub-directories.
+
+    2. General stuff
+
+        2.1 How to run Python scripts
+
+            All usage examples below show how to execute the Python scripts on
+            the shell of a Unix-like system. If you do not know, how to run
+            those scripts on your operating system, you may have a look at
+            this page:
+
+                http://www.urbanware.org/howto_python.html
+
+        2.2 Overview of all command-line arguments
+
+            Usually, each script requires command-line arguments to operate.
+            So, to get an overview of all arguments available, simply run the
+            script with the "--help" argument. For example:
+
+                $ ./nomen-filecase.py --help
+
+        2.3 Warning
+
+            Please use this tool with care to avoid data damage or loss!
+
+            It is strongly recommended to simulate every rename process first
+            to check which files would have been renamed. As a matter of fact,
+            there is no function to undo the changes done by this tool, so you
+            should be aware of what you are doing. If not, do NOT use this
+            tool.
+
+            Improper use (e. g. modifying files inside system directories)
+            will corrupt your system!
+
+        2.4 Simulation mode
+
+            As already mentioned above, before renaming any files, you should
+            simulate the rename process by using the "--simulate" argument.
+
+            This argument requires a file path where the report of the rename
+            process will be written to. When in simulation mode, no files will
+            be renamed at all.
+
+            So, if you have a command line like this
+
+                ./nomen-filecase.py -m rename -c title -d /tmp/pics/Holidays
+
+            but want to simulate the rename process and write the report into
+            the file "/tmp/report.txt", simply add the argument
+
+                --simulate /tmp/report.txt
+
+            to the command line:
+
+                ./nomen-filecase.py -m rename -c title -d /tmp/pics/Holidays \
+                                    --simulate /tmp/report.txt
+
+    3. Convert the case of base names
+
+        For example, you have a picture file with this file name
+
+            my favorite holiday.jpg
+
+        and you convert the case of the base name to title case, the file name
+        will look like this:
+
+            My Favorite Holiday.jpg
+
+        But, for example, if file system is case senstive and the directory
+        contains the files
+
+            HOLIDAY.jpg
+            holiday.jpg
+
+        there would be a problem converting the case of the base name, because
+        both target file names would be identical. So, to avoid that, the
+        script also offers two operating modes.
+
+        3.1 Rename mode
+
+            The "rename mode" adds a numeric ID to the base name of the
+            duplicate target file and converts the case:
+
+                HOLIDAY.jpg      will be renamed to "Holiday.jpg"
+                holiday.jpg      will be renamed to "Holiday_1.jpg"
+
+            To use this mode and convert the base name of the files to title
+            case, type:
+
+                ./nomen-filecase.py -m rename -c title -d /tmp/pics/Holidays
+
+        3.2 Skip mode
+
+            The "skip mode" simply skips the files where converting the case
+            of the base name would result in duplicate file names:
+
+                HOLIDAY.jpg      will be renamed to "Holiday.jpg"
+                holiday.jpg      will be skipped
+
+            To use this mode and convert the base name of the files to title
+            case, type:
+
+                ./nomen-filecase.py -m skip -c title -d /tmp/pics/Holidays
+
+    4. Using config files
+
+        The Nomen File Name Case Converter script also comes with the feature
+        that allows using config files to convert the case of certain strings
+        always to lowercase, title case, uppercase or a user-defined mixed
+        case, nomatter which target case (using the "-c" or "--case" argument)
+        was given.
+
+        For details see the included sample config files which can be found
+        inside the "cfg" sub-directory.
+
+        If the sample config file is missing for some reason, you may download
+        the project from the website:
+
+            http://www.urbanware.org/nomen.html
+
+        To use these config files, the corresponding command-line argument
+        followed by the full path to the config file is required, depending on
+        which of the config files you want to use.
+
+        4.1 With a certain target case
+
+            For example, if you want to use title case as target case as well
+            as the lowercase config file named "lower.cfg" which is located
+            inside the directory "/tmp", the command line would look like
+            this:
+
+                ./nomen-filecase.py -m skip -c title -d /tmp/pics/Holidays \
+                                    --cfg-lower /tmp/lower.cfg
+
+            To additionally use the uppercase config file "upper.cfg" which
+            is also located inside the "/tmp" directory, simply add the
+            appropriate argument:
+
+                ./nomen-filecase.py -m skip -c title -d /tmp/pics/Holidays \
+                                    --cfg-lower /tmp/lower.cfg \
+                                    --cfg-upper /tmp/upper.cfg
+
+            Same with the mixed case config:
+
+                ./nomen-filecase.py -m skip -c title -d /tmp/pics/Holidays \
+                                    --cfg-lower /tmp/lower.cfg \
+                                    --cfg-mixed /tmp/mixed.cfg \
+                                    --cfg-upper /tmp/upper.cfg
+
+            However, you cannot use the title case config file when using
+            title case as target case anyway.
+
+        4.2 Without a certain target case
+
+            If you just want to convert the case of the certain strings stored
+            inside the case config files, you can do this by giving "config"
+            as the target case:
+
+                ./nomen-filecase.py -m skip -c config -d /tmp/pics/Holidays \
+                                    --cfg-lower /tmp/lower.cfg \
+                                    --cfg-mixed /tmp/mixed.cfg \
+                                    --cfg-title /tmp/title.cfg \
+                                    --cfg-upper /tmp/upper.cfg
+
