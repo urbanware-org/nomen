@@ -1,6 +1,10 @@
 
 CHANGELOG (Nomen)
 
+    Next version (outstanding)
+
+        * Revised the code of the core modules (negligible changes).
+
     Version 2.3.5 (2018-04-14)
 
         + Added new versions of the Clap and PaVal core modules (replaced the
