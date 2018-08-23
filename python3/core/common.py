@@ -82,7 +82,7 @@ files inside system directories) will corrupt your system!
 
 If you wish to proceed, type '%s' (case-sensitive, without any
 quotes or spaces) and press the <Return> key. Otherwise, the process
-will be cancelled.""" % string
+will be canceled.""" % string
 
     print_text_box("", notice_text)
     choice = input("> ")
@@ -91,7 +91,7 @@ will be cancelled.""" % string
         choice = "Proceeding."
         proceed = True
     else:
-        choice = "cancelled."
+        choice = "Canceled."
     print("\n%s\n" % choice)
 
     return proceed
@@ -389,7 +389,7 @@ def rename(list_files, reverse=False):
                 # In some cases the file will get a temporary name first and
                 # then its name will be changed to what it should be.
                 #
-                # This behaviour is required when using file systems that are
+                # This behavior is required when using file systems that are
                 # case-insensitive (such as FAT32 or NTFS) where e. g. the
                 # file "FOOBAR.txt" would overwrite the file "foobar.txt"
                 # inside the same directory.

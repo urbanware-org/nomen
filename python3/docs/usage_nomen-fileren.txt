@@ -134,7 +134,7 @@ USAGE (nomen-fileren.py)
                     +--------------------------+--------------------------+
 
                 However, with the "--ignore-file-ext" command-line argument
-                this behaviour can be changed, so the files will be renamed
+                this behavior can be changed, so the files will be renamed
                 with a continuous number ignoring the file type again.
 
     3. Rename files
@@ -166,7 +166,7 @@ USAGE (nomen-fileren.py)
             3.1.1 Order by name (default)
 
                 In case no order command-line argument was given, the default
-                behaviour will be used. For example, if you delete the picture
+                behavior will be used. For example, if you delete the picture
                 file "Holidays 2.jpg" and re-run the script with this rename
                 mode it will do the following:
 
