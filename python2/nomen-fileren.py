@@ -36,7 +36,7 @@ def main():
     p.add_avalue("-d", "--directory", "directory that contains the files " \
                  "to process", "directory", None, True)
     p.add_predef("-m", "--rename-mode", "rename mode to use", "rename_mode",
-                 ["fill-gaps", "increase", "keep-order", "rename-new"], True)
+                 ["fill-gaps", "keep-order", "rename-new"], True)
 
     # Optional arguments
     p.add_switch("-c", "--case-sensitive", "do not ignore the case of the " \
@@ -127,4 +127,3 @@ if __name__ == "__main__":
     main()
 
 # EOF
-
