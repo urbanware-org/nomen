@@ -3,7 +3,7 @@
 
 # ============================================================================
 # Nomen - Multi-purpose rename tool
-# Extension case converter script
+# Extension Case Converter script
 # Copyright (C) 2018 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
@@ -84,4 +84,3 @@ if __name__ == "__main__":
     main()
 
 # EOF
-

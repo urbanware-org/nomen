@@ -3,7 +3,7 @@
 
 # ============================================================================
 # Nomen - Multi-purpose rename tool
-# File name case converter script
+# File Name Case Converter script
 # Copyright (C) 2018 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
@@ -97,4 +97,3 @@ if __name__ == "__main__":
     main()
 
 # EOF
-

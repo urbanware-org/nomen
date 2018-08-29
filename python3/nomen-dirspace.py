@@ -3,7 +3,7 @@
 
 # ============================================================================
 # Nomen - Multi-purpose rename tool
-# Directory name space modifier script
+# Directory Name Space Modifier script
 # Copyright (C) 2018 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #

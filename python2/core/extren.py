@@ -3,7 +3,7 @@
 
 # ============================================================================
 # Nomen - Multi-purpose rename tool
-# Extension renamer core module
+# Extension Renamer core module
 # Copyright (C) 2018 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
@@ -275,4 +275,3 @@ def __rename_extensions(list_files, list_extensions, list_renamed,
     return list_renamed, list_skipped
 
 # EOF
-

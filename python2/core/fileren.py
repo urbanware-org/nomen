@@ -3,7 +3,7 @@
 
 # ============================================================================
 # Nomen - Multi-purpose rename tool
-# File renamer core module
+# File Renamer core module
 # Copyright (C) 2018 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
@@ -835,4 +835,3 @@ def __static_case_string(list_cfg_regex, base_name):
     return base_name
 
 # EOF
-
