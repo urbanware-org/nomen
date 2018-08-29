@@ -115,4 +115,3 @@ def __read_config(config_file):
     return list_config
 
 # EOF
-

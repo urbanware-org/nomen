@@ -552,4 +552,3 @@ def __set_order(file_list, order_by):
     return list_files
 
 # EOF
-
