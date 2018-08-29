@@ -7,8 +7,8 @@ README (Nomen)
         Version 2.3.5 (based on Python framework 3.x)
         Copyright (C) 2018 by Ralf Kilian
 
-        Website: http://www.urbanware.org
         GitHub: https://github.com/urbanware-org/nomen
+        GitLab: https://gitlab.com/urbanware-org/nomen
 
     Definition
 
