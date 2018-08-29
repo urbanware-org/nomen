@@ -200,3 +200,4 @@ CHANGELOG (Nomen)
     Version 2.0.0 (2014-03-18)
 
         * First official release of this major version.
+
