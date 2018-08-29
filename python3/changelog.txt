@@ -5,7 +5,10 @@ CHANGELOG (Nomen)
 
         * Revised the code of all components in general (applied some PEP8
           style guidelines).
-        
+
+        # Fixed rename modes inside the Nomen File Renamer script (removed
+          useless mode).          
+
     Version 2.3.5 (2018-04-14)
 
         + Added new versions of the Clap and PaVal core modules (replaced the
@@ -197,4 +200,3 @@ CHANGELOG (Nomen)
     Version 2.0.0 (2014-03-18)
 
         * First official release of this major version.
-
