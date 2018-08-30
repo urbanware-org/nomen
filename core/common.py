@@ -305,10 +305,8 @@ def move(source, destination):
     """
         Move (or rename) a file.
     """
-    if not os.path.exists(source) and not os.path.exists(destination):
-        raise Exception("Source or destination path does not exist")
-    elif not os.path.isfile(source) and not os.path.isfile(destination):
-        raise Exception("Source or destination path is not a file")
+    if not os.path.exists(source):
+        raise Exception("Source path does not exist")
     elif source == destination:
         raise Exception("Source and destination path are identical")
     else:
