@@ -38,7 +38,13 @@ Please be sure to read [this](../../wiki#important-notice) before using *Nomen*.
 
 ## Requirements
 
-In order to use *Nomen*, the *Python* framework must be installed on the system.
+In order to run the latest versions of *Nomen*, the *Python* 3.x framework must be installed on the system.
+
+Version 2.3.6 is the last official release for the *Python* 2.x framework.
+
+If you need a later version for the *Python* 2,x framework for whatever reason, you can try refactoring the syntax from *Python* 3.x to version 2.x using the *[3to2](https://pypi.python.org/pypi/3to2)* tool. 
+
+However, there is no guarantee that this works properly or at all.
 
 Depending on which version of the framework you are using:
 
@@ -58,4 +64,3 @@ In the corresponding `docs` sub-directories, there are plain text files containi
 Whoever cares can find them [here](../../wiki#useless-facts).
 
 [Top](#nomen-)
-
