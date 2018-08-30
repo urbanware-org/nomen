@@ -42,7 +42,7 @@ In order to run the latest versions of *Nomen*, the *Python* 3.x framework must 
 
 Version 2.3.6 is the last official release for the *Python* 2.x framework.
 
-If you need a later version for the *Python* 2,x framework for whatever reason, you can try refactoring the syntax from *Python* 3.x to version 2.x using the *[3to2](https://pypi.python.org/pypi/3to2)* tool. 
+If you need a later version for the *Python* 2.x framework for whatever reason, you can try refactoring the syntax from *Python* 3.x to version 2.x using the *[3to2](https://pypi.python.org/pypi/3to2)* tool. 
 
 However, there is no guarantee that this works properly or at all.
 
