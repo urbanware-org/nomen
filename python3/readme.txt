@@ -39,15 +39,14 @@ README (Nomen)
 
     Requirements
 
-        The code of this Nomen version was simply converted from Python 2.x
-        to 3.x syntax using the 2to3 tool and has only been tested
-        fundamentally.
-
         In order to use the project, Python 3.2 or higher is recommended, but
         it may also work with earlier versions.
 
         If you need a version that works with Python 2.x, you can also find
         one on the website of the project mentioned above.
+
+        However, version 2.3.6 is the last official release for the Python 2.x
+        framework.
 
     Usage
 

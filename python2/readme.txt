@@ -4,7 +4,7 @@ README (Nomen)
     Project
 
         Nomen
-        Version 2.3.5 (based on Python framework 2.x)
+        Version 2.3.6 (based on Python framework 2.x)
         Copyright (C) 2018 by Ralf Kilian
 
         GitHub: https://github.com/urbanware-org/nomen
@@ -15,6 +15,15 @@ README (Nomen)
         The Nomen project is a multi-purpose rename tool to consistently
         rename the base name as well as the extension of files in a variety of
         ways and also to remove unnecessary whitespaces from directory names.
+
+    Notice
+
+        This is the last official version for the Python 2.x framework. If you
+        need later versions for that framework for whatever reason, you can
+        try refactoring the syntax from Python 3.x to version 2.x using the
+        '3to2' tool.
+
+        However, there is no guarantee that this works properly or at all.
 
     License
 
