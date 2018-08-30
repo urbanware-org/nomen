@@ -16,6 +16,7 @@ __version__ = "2.3.5"
 import os
 import random
 import re
+import shutil
 import sys
 import tempfile
 from datetime import datetime as dt
@@ -186,7 +187,7 @@ def dir_space_modifier(directory, remove_duplicate=False,
                     newpath = newpath.replace((" " * 2), " ")
 
             if not os.path.exists(newpath):
-                os.rename(path, newpath)
+                move(path, newpath)
                 nextdir = newpath
             else:
                 nextdir = path
@@ -300,6 +301,21 @@ def get_version():
     return __version__
 
 
+def move(source, destination):
+    """
+        Move (or rename) a file.
+    """
+    if not os.path.exists(source) and not os.path.exists(destination):
+        raise Exception("Source or destination path does not exist")
+    elif not os.path.isfile(source) and not os.path.isfile(destination):
+        raise Exception("Source or destination path is not a file")
+    elif source == destination:
+        raise Exception("Source and destination path are identical")
+    else:
+        # I like to move it, move it
+        shutil.move(source, destination)
+
+
 def print_text_box(heading, text):
     """
         Print a text message outlined with an ASCII character frame.
@@ -395,10 +411,10 @@ def rename(list_files, reverse=False):
                 # inside the same directory.
                 if item[1] is None or \
                    item[1] == "":
-                    os.rename(item[0], item[2])
+                    move(item[0], item[2])
                 else:
-                    os.rename(item[0], item[1])
-                    os.rename(item[1], item[2])
+                    move(item[0], item[1])
+                    move(item[1], item[2])
 
         if list_skipped:
             if list_skipped != list_files:
