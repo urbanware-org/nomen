@@ -1,7 +1,7 @@
 
 CHANGELOG (Nomen)
 
-    Next version (outstanding)
+    Version 2.3.6 (outstanding)
 
         * Revised the code of the core modules (negligible changes).
 
