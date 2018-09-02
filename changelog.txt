@@ -5,9 +5,11 @@ CHANGELOG (Nomen)
 
         * Revised the code of all components in general (applied some PEP8
           style guidelines).
+        * Revised (replaced) the method to rename files inside the common core
+          module.
 
         # Fixed rename modes inside the Nomen File Renamer script (removed
-          useless mode).          
+          useless mode).
 
     Version 2.3.5 (2018-04-14)
 
@@ -200,4 +202,3 @@ CHANGELOG (Nomen)
     Version 2.0.0 (2014-03-18)
 
         * First official release of this major version.
-
