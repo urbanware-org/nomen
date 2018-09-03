@@ -1,7 +1,11 @@
 #!/bin/bash
 
-TESTDATA=/tmp/nomen
-TESTDIR=/tmp/testrun
+TESTDATA=/tmp/nomen_testdata_$$
+TESTDIR=/tmp/nomen_testrun_$$
+
+CFGLOWER=/tmp/nomen_lower_$$.cfg
+CFGMIXED=/tmp/nomen_mixed_$$.cfg
+CFGUPPER=/tmp/nomen_upper_$$.cfg
 
 ls | grep "nomen-" &>/dev/null
 if [ $? -ne 0 ]; then
@@ -19,14 +23,13 @@ fi
 rm -fR $TESTDIR
 rsync -a ./* ${TESTDIR}/
 
-echo "lower"        >  /tmp/nomen_lower
-echo "mIxEd"        >  /tmp/nomen_mixed
-echo "Title"        >  /tmp/nomen_title
-echo "Upper"        >  /tmp/nomen_upper
+echo "lower"        >  $CFGLOWER
+echo "mIxEd"        >  $CFGMIXED
+echo "Upper"        >  $CFGUPPER
 
-echo "\$(uLLiVaN)"  >> /tmp/nomen_mixed
-echo "\$(GIL)"      >> /tmp/nomen_lower
-echo "\$('s )"      >> /tmp/nomen_lower
+echo "\$(uLLiVaN)"  >> $CFGMIXED
+echo "\$(GIL)"      >> $CFGLOWER
+echo "\$('s )"      >> $CFGLOWER
 
 echo
 echo
@@ -41,12 +44,12 @@ SUBDIR="   Subdir  ,  Recursive   "
 TEMP="${TESTDATA}/${BASEDIR}/${SUBDIR}"
 rm -fR ${TESTDATA}/
 mkdir -p "${TEMP}"
-mkdir -p "/tmp/nomen/Stuff/no-spaces-around-dashes"
-mkdir -p "/tmp/nomen/Stuff/no-spaces-yet-again"
-find ${TESTDATA} | grep -v "^/tmp/nomen$" | sort
+mkdir -p "${TESTDATA}/Stuff/no-spaces-around-dashes"
+mkdir -p "${TESTDATA}/Stuff/no-spaces-yet-again"
+find ${TESTDATA} | grep -v "^${TESTDATA}$" | sort
 echo "------------------------------------------------------------------------------"
 ${TESTDIR}/nomen-dirspace.py -r -d ${TESTDATA} -s -l -t -b --hyphens -p --exclude "again;dash"
-find ${TESTDATA} | grep -v "^/tmp/nomen$" | sort
+find ${TESTDATA} | grep -v "^${TESTDATA}$" | sort
 
 echo
 echo
@@ -159,9 +162,9 @@ echo "Adjust file names to title case except for certain names (see case config)
 echo "rename duplicates"
 echo
 ${TESTDIR}/nomen-filecase.py --confirm -r -d ${TESTDATA} -m rename -c title \
-                             --cfg-lower /tmp/nomen_lower \
-                             --cfg-mixed /tmp/nomen_mixed \
-                             --cfg-upper /tmp/nomen_upper
+                             --cfg-lower $CFGLOWER \
+                             --cfg-mixed $CFGMIXED \
+                             --cfg-upper $CFGUPPER
 tree ${TESTDATA}
 
 echo
@@ -233,5 +236,9 @@ tree ${TESTDATA}
 echo
 echo "=============================================================================="
 echo
+
+rm -fR $TESTDATA
+rm -fR $TESTDIR
+rm -f /tmp/nomen_*_$$.cfg
 
 # EOF
