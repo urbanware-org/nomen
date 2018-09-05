@@ -4,7 +4,7 @@ README (Nomen)
     Project
 
         Nomen
-        Version 2.3.5 (based on Python framework 3.x)
+        Version 2.3.6 (based on Python framework 3.x)
         Copyright (C) 2018 by Ralf Kilian
 
         GitHub: https://github.com/urbanware-org/nomen
