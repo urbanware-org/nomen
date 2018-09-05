@@ -1,7 +1,7 @@
 
 CHANGELOG (Nomen)
 
-    Next version (outstanding)
+    Version 2.3.6 (2018-09-05)
 
         * Revised the code of all components in general (applied some PEP8
           style guidelines).
