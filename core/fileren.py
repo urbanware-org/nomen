@@ -27,7 +27,7 @@ def convert_case(directory, case, conflict_mode, recursive=False,
     """
         Convert the case of the base name of files.
     """
-    pv.path(directory, "given", False, True)
+    pv.path(directory, "", False, True)
     pv.compstr(case, "case", ["lower", "title", "upper", "config"])
     pv.compstr(conflict_mode, "conflict mode", ["rename", "skip"])
 
@@ -99,7 +99,7 @@ def modify_names(directory, action, position, input_string,
         Modify the base name of files by adding, removing or replacing a
         user-defined string.
     """
-    pv.path(directory, "given", False, True)
+    pv.path(directory, "", False, True)
     pv.compstr(action, "action", ["add", "remove", "replace"])
     pv.compstr(position, "position", ["any", "prefix", "suffix"])
     pv.string(input_string, "input string", False, common.get_invalid_chars())
@@ -207,7 +207,7 @@ def rename_files(directory, rename_mode, separator=" ", recursive=False,
         Rename the base name of files based on the name of the directory where
         they are stored in and add a numeric ID.
     """
-    pv.path(directory, "given", False, True)
+    pv.path(directory, "", False, True)
     pv.compstr(rename_mode, "rename mode",
                ["fill-gaps", "increase", "keep-order", "rename-new"])
     pv.intrange(padding, "padding", 0, 12, True)
