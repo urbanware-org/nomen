@@ -128,11 +128,11 @@ def modify_names(directory, action, position, input_string,
         raise Exception("The position 'any' cannot be used together with "
                         "the action 'add'.")
 
-    if len(input_string) == 0:
-        raise Exception("The input string must not be empty.")
-    else:
+    if input_string:
         pv.string(input_string, "input string", False,
                   common.get_invalid_chars())
+    else:
+        raise Exception("The input string must not be empty.")
 
     if strip_chars is not None:
         pv.string(strip_chars, "strip chars string", False,
@@ -579,7 +579,7 @@ def __modify_names(list_files, list_renamed, list_skipped, action, position,
         file_newpath = file_path.replace(file_name + file_ext, file_newname)
         if file_newpath == "":
             list_skipped.append(file_path)
-        elif file_newname == "" or file_newname == file_ext:
+        elif file_newname is False or file_newname == file_ext:
             list_skipped.append(file_path)
         else:
             if file_path == file_newpath:
