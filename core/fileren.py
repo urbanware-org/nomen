@@ -118,13 +118,12 @@ def modify_names(directory, action, position, input_string,
         simulate = True
 
     if replace_string is not None:
-        if not action == "replace":
-            raise Exception("The replace string argument can only be used "
-                            "together with the action 'replace'.")
-        else:
+        if action == "replace":
             pv.string(replace_string, "string False", False,
                       common.get_invalid_chars())
-
+        else:
+            raise Exception("The replace string argument can only be used "
+                            "together with the action 'replace'.")
     if action == "add" and position == "any":
         raise Exception("The position 'any' cannot be used together with "
                         "the action 'add'.")
