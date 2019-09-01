@@ -116,7 +116,7 @@ def __read_config(config_file):
             continue
         list_config.append(line.replace("\n", ""))
     fh_config.close()
-    list_config.sort
+    list_config.sort()
 
     return list_config
 
