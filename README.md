@@ -38,18 +38,13 @@ Please be sure to read [this](../../wiki#important-notice) before using *Nomen*.
 
 ## Requirements
 
-In order to run the latest versions of *Nomen*, the *Python* 3.x framework must be installed on the system.
+In order to run the latest versions of *Nomen*, the *Python* 3.x framework (version 3.2 or higher is recommended) must be installed on the system.
 
 Version 2.3.6 is the last official release that also runs on the *Python* 2.x framework.
 
 If you need a later version for the *Python* 2.x framework for whatever reason, you can try refactoring the syntax from *Python* 3.x to version 2.x using the *[3to2](https://pypi.python.org/pypi/3to2)* tool.
 
 However, there is no guarantee that this works properly or at all.
-
-Depending on which version of the framework you are using:
-
-*   *Python* 2.x (version 2.7 or higher is recommended, may also work with earlier versions)
-*   *Python* 3.x (version 3.2 or higher is recommended, may also work with earlier versions)
 
 [Top](#nomen-)
 
