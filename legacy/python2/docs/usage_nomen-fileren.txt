@@ -66,7 +66,7 @@ USAGE (nomen-fileren.py)
             should be aware of what you are doing. If not, do NOT use this
             tool.
 
-            Improper use (e. g. modifying files inside system directories)
+            Improper use (e.g. modifying files inside system directories)
             will corrupt your system!
 
         2.4 Simulation mode
@@ -306,7 +306,7 @@ USAGE (nomen-fileren.py)
                 Holidays 3.jpg      stays (no need to rename)
                 Holidays 4.jpg      stays (no need to rename)
 
-            If you then add another file to that directory, e. g. "foobar.jpg"
+            If you then add another file to that directory, e.g. "foobar.jpg"
             and re-run the script this rename mode again, it will simply fill
             the gap "Holiday 2.jpg" has left using the new file:
 
@@ -347,7 +347,7 @@ USAGE (nomen-fileren.py)
 
             By default, the given pattern is being processed case-insensitive.
             That means, the string given above would match "foo" as well as
-            e. g. "FOO", "Foo", "FoO" and so on.
+            e.g. "FOO", "Foo", "FoO" and so on.
 
             The pattern can also consist of multiple strings (separated with
             semicolons):
@@ -360,7 +360,7 @@ USAGE (nomen-fileren.py)
             The pattern also supports asterisk wildcards. So, if you want to
             exclude all files whose file name (base name or extension)
             contains a string that starts with "foo" and ends with "bar"
-            (e. g. "foobar", "foo-bar" or "foo bar"), type:
+            (e.g. "foobar", "foo-bar" or "foo bar"), type:
 
                 $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
                                      --exclude "foo*bar"
@@ -383,7 +383,7 @@ USAGE (nomen-fileren.py)
 
             By default, the given pattern is being processed case-insensitive.
             That means, the string given above would match "foo" as well as
-            e. g. "FOO", "Foo", "FoO" and so on.
+            e.g. "FOO", "Foo", "FoO" and so on.
 
             The pattern can also consist of multiple strings (separated with
             semicolons):
@@ -396,7 +396,7 @@ USAGE (nomen-fileren.py)
             The pattern also supports asterisk wildcards. So, if you want to
             only rename the files whose file name (base name or extension)
             contains a string that starts with "foo" and ends with "bar"
-            (e. g. "foobar", "foo-bar" or "foo bar"), type:
+            (e.g. "foobar", "foo-bar" or "foo bar"), type:
 
                 $ ./nomen-fileren.py -m fill-gaps -d /tmp/pics/Holidays \
                                      --explicit "foo*bar"

@@ -78,7 +78,7 @@ def confirm_notice():
 Please use this tool with care to avoid data damage or loss!
 
 There is no function to undo the changes done by this tool, so you
-should be aware of what you are doing. Improper use (e. g. modifying
+should be aware of what you are doing. Improper use (e.g. modifying
 files inside system directories) will corrupt your system!
 
 If you wish to proceed, type '%s' (case-sensitive, without any
@@ -261,7 +261,7 @@ def get_fs_case_sensitivity(directory):
         Determine if the file system of the given directory is case-sensitive.
     """
     # This should be done with every directory that is processed, due to the
-    # fact, that e. g. a device containing a case-insensitive file system can
+    # fact, that e.g. a device containing a case-insensitive file system can
     # be mounted into a directory of a case-sensitive file system.
 
     pv.path(directory, "given", False, True)
@@ -285,7 +285,7 @@ def get_invalid_chars():
         part of a file name).
     """
     # This list of characters depends on the file system where the files are
-    # being renamed on. Due to the fact, that e. g. a device containing a
+    # being renamed on. Due to the fact, that e.g. a device containing a
     # different file system can be mounted into a directory of the local file
     # system, the following characters will be handled as invalid on every
     # file system.
@@ -404,7 +404,7 @@ def rename(list_files, reverse=False):
                 # then its name will be changed to what it should be.
                 #
                 # This behavior is required when using file systems that are
-                # case-insensitive (such as FAT32 or NTFS) where e. g. the
+                # case-insensitive (such as FAT32 or NTFS) where e.g. the
                 # file "FOOBAR.txt" would overwrite the file "foobar.txt"
                 # inside the same directory.
                 if item[1] is None or \
