@@ -1,4 +1,4 @@
-# *Nomen* <img src="nomen.png" alt="Nomen logo" height="48px" width="48px" align="right"/>
+# *Nomen* <img src="nomen.png" alt="Nomen logo" height="128px" width="128px" align="right"/>
 
 **Table of contents**
 *   [Definition](#definition)
