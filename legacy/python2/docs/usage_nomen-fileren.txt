@@ -5,13 +5,12 @@ USAGE (nomen-fileren.py)
 
         1.  Definition
         2.  General stuff
-          2.1  How to run Python scripts
-          2.2  Overview of all command-line arguments
-          2.3  Warning
-          2.4  Simulation mode
-          2.5  Significant changes (released with version 2.1.0)
-             2.5.1  Names of the rename modes
-             2.5.2  Way of renaming files
+          2.1  Overview of all command-line arguments
+          2.2  Warning
+          2.3  Simulation mode
+          2.4  Significant changes (released with version 2.1.0)
+             2.4.1  Names of the rename modes
+             2.4.2  Way of renaming files
         3.  Rename files
           3.1  Using "keep-order" mode
              3.1.1  Order by name (default)
@@ -39,16 +38,7 @@ USAGE (nomen-fileren.py)
 
     2. General stuff
 
-        2.1 How to run Python scripts
-
-            All usage examples below show how to execute the Python scripts on
-            the shell of a Unix-like system. If you do not know, how to run
-            those scripts on your operating system, you may have a look at
-            this page:
-
-                http://www.urbanware.org/howto_python.html
-
-        2.2 Overview of all command-line arguments
+        2.1 Overview of all command-line arguments
 
             Usually, each script requires command-line arguments to operate.
             So, to get an overview of all arguments available, simply run the
@@ -56,7 +46,7 @@ USAGE (nomen-fileren.py)
 
                 $ ./nomen-fileren.py --help
 
-        2.3 Warning
+        2.2 Warning
 
             Please use this tool with care to avoid data damage or loss!
 
@@ -69,7 +59,7 @@ USAGE (nomen-fileren.py)
             Improper use (e.g. modifying files inside system directories)
             will corrupt your system!
 
-        2.4 Simulation mode
+        2.3 Simulation mode
 
             As already mentioned above, before renaming any files, you should
             simulate the rename process by using the "--simulate" argument.
@@ -92,9 +82,9 @@ USAGE (nomen-fileren.py)
                 ./nomen-fileren.py -m keep-order -d /tmp/pics/Holidays \
                                    --simulate /tmp/report.txt
 
-        2.5 Significant changes (released with version 2.1.0)
+        2.4 Significant changes (released with version 2.1.0)
 
-            2.5.1 Names of the rename modes
+            2.4.1 Names of the rename modes
 
                 Before Nomen version 2.0.0, there only were two rename modes,
                 "consecutive" and "fill".
@@ -113,7 +103,7 @@ USAGE (nomen-fileren.py)
                     | fillnew                  | rename-new               |
                     +--------------------------+--------------------------+
 
-            2.5.2 Way of renaming files
+            2.4.2 Way of renaming files
 
                 In the past, the files have been renamed with a continuous
                 number ignoring the file type.

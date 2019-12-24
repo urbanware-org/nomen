@@ -5,11 +5,10 @@ USAGE (nomen-dirspace.py)
 
         1.  Definition
         2.  General stuff
-          2.1  How to run Python scripts
-          2.2  Overview of all command-line arguments
-          2.3  Warning
-          2.4  Simulation mode
-          2.5  Identical directory names
+          2.1  Overview of all command-line arguments
+          2.2  Warning
+          2.3  Simulation mode
+          2.4  Identical directory names
         3.  Remove spaces from directory names
           3.1  Duplicate spaces
           3.2  Leading spaces
@@ -29,16 +28,7 @@ USAGE (nomen-dirspace.py)
 
     2. General stuff
 
-        2.1 How to run Python scripts
-
-            All usage examples below show how to execute the Python scripts on
-            the shell of a Unix-like system. If you do not know, how to run
-            those scripts on your operating system, you may have a look at
-            this page:
-
-                http://www.urbanware.org/howto_python.html
-
-        2.2 Overview of all command-line arguments
+        2.1 Overview of all command-line arguments
 
             Usually, each script requires command-line arguments to operate.
             So, to get an overview of all arguments available, simply run the
@@ -46,7 +36,7 @@ USAGE (nomen-dirspace.py)
 
                 $ ./nomen-dirspace.py --help
 
-        2.3 Warning
+        2.2 Warning
 
             Please use this tool with care to avoid data damage or loss!
 
@@ -57,12 +47,12 @@ USAGE (nomen-dirspace.py)
             Improper use (e. g. modifying system directories) will corrupt
             your system!
 
-        2.4 Simulation mode
+        2.3 Simulation mode
 
             Due to the fact that this tool simply removes unnecessary spaces
             in directory names, it does not provide any simulation mode.
 
-        2.5 Identical directory names
+        2.4 Identical directory names
 
             For example, if you have the directories
 

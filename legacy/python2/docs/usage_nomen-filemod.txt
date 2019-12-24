@@ -5,11 +5,10 @@ USAGE (nomen-filemod.py)
 
         1.  Definition
         2.  General stuff
-          2.1  How to run Python scripts
-          2.2  Overview of all command-line arguments
-          2.3  Warning
-          2.4  Simulation mode
-          2.5  Prefixes and suffixes
+          2.1  Overview of all command-line arguments
+          2.2  Warning
+          2.3  Simulation mode
+          2.4  Prefixes and suffixes
         3.  Add a user-defined string to file names
           3.1  Add a prefix
           3.2  Add a suffix
@@ -32,16 +31,7 @@ USAGE (nomen-filemod.py)
 
     2. General stuff
 
-        2.1 How to run Python scripts
-
-            All usage examples below show how to execute the Python scripts on
-            the shell of a Unix-like system. If you do not know, how to run
-            those scripts on your operating system, you may have a look at
-            this page:
-
-                http://www.urbanware.org/howto_python.html
-
-        2.2 Overview of all command-line arguments
+        2.1 Overview of all command-line arguments
 
             Usually, each script requires command-line arguments to operate.
             So, to get an overview of all arguments available, simply run the
@@ -49,7 +39,7 @@ USAGE (nomen-filemod.py)
 
                 $ ./nomen-filemod.py --help
 
-        2.3 Warning
+        2.2 Warning
 
             Please use this tool with care to avoid data damage or loss!
 
@@ -62,7 +52,7 @@ USAGE (nomen-filemod.py)
             Improper use (e. g. modifying files inside system directories)
             will corrupt your system!
 
-        2.4 Simulation mode
+        2.3 Simulation mode
 
             As already mentioned above, before renaming any files, you should
             simulate the rename process by using the "--simulate" argument.
@@ -85,7 +75,7 @@ USAGE (nomen-filemod.py)
                 ./nomen-filemod.py -d /tmp/pics -a add -p prefix -s "Foobar" \
                                    --simulate /tmp/report.txt
 
-        2.5 Prefixes and suffixes
+        2.4 Prefixes and suffixes
 
             Typically a file name consists of a base name (prefix) and an
             extension (suffix) separated by a separator, for example:
@@ -116,7 +106,7 @@ USAGE (nomen-filemod.py)
 
     3. Add a user-defined string to file names
 
-        Before modifying the base name of any files, please see section 2.5
+        Before modifying the base name of any files, please see section 2.4
         above. Notice that the given input string is processed case-sensitive.
 
         3.1 Add a prefix
@@ -166,7 +156,7 @@ USAGE (nomen-filemod.py)
 
     4. Remove a user-defined string from file names
 
-        Before modifying the base name of any files, please see section 2.5
+        Before modifying the base name of any files, please see section 2.4
         above. Notice that the given input string is processed case-sensitive.
 
         4.1 Remove a prefix
@@ -242,7 +232,7 @@ USAGE (nomen-filemod.py)
 
     5. Replace a user-defined string inside file names
 
-        Before modifying the base name of any files, please see section 2.5
+        Before modifying the base name of any files, please see section 2.4
         above. Notice that the given string (input and replace string) are
         processed case-sensitive.
 
