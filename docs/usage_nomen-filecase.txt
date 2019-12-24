@@ -128,7 +128,7 @@ USAGE (nomen-filecase.py)
         If the sample config file is missing for some reason, you may download
         the project from the website:
 
-            http://www.urbanware.org/nomen.html
+            http://github.com/urbanware-org/nomen
 
         To use these config files, the corresponding command-line argument
         followed by the full path to the config file is required, depending on
