@@ -1,16 +1,16 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # ============================================================================
 # Clap - Command-line argument parser module
-# Copyright (C) 2018 by Ralf Kilian
+# Copyright (C) 2019 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
 # GitHub: https://github.com/urbanware-org/clap
 # GitLab: https://gitlab.com/urbanware-org/clap
 # ============================================================================
 
-__version__ = "1.1.10"
+__version__ = "1.1.11"
 
 
 def get_version():
@@ -20,7 +20,7 @@ def get_version():
     return __version__
 
 
-class Parser(object):
+class Parser():
     """
         Project independent command-line argument parser class.
     """
@@ -180,7 +180,7 @@ class Parser(object):
             Raise an error and cause the argument parser to print the error
             message.
         """
-        if type(obj) == str:
+        if isinstance(obj, str):
             obj = obj.strip()
 
         self.__arg_parser.error(obj)
