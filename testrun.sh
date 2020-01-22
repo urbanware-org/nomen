@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 TESTDATA=/tmp/nomen_testdata_$$
 TESTDIR=/tmp/nomen_testrun_$$
