@@ -119,7 +119,7 @@ USAGE (nomen-dirspace.py)
     4. Spaces next to certain characters
 
         The Nomen Directory Name Space Modifier also allows inserting and
-        removing spaces next to certain characters such as brackets, dashes
+        removing spaces next to certain characters such as brackets, hyphens
         and punctuation characters. These are automated processes without any
         further options.
 
