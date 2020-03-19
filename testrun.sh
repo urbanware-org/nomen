@@ -44,11 +44,11 @@ SUBDIR="   Subdir  ,  Recursive   "
 TEMP="${TESTDATA}/${BASEDIR}/${SUBDIR}"
 rm -fR ${TESTDATA}/
 mkdir -p "${TEMP}"
-mkdir -p "${TESTDATA}/Stuff/no-spaces-around-dashes"
+mkdir -p "${TESTDATA}/Stuff/no-spaces-around-hyphens"
 mkdir -p "${TESTDATA}/Stuff/no-spaces-yet-again"
 find ${TESTDATA} | grep -v "^${TESTDATA}$" | sort
 echo "------------------------------------------------------------------------------"
-${TESTDIR}/nomen-dirspace.py -r -d ${TESTDATA} -s -l -t -b --hyphens -p --exclude "again;dash"
+${TESTDIR}/nomen-dirspace.py -r -d ${TESTDATA} -s -l -t -b --hyphens -p --exclude "again;hyphen"
 find ${TESTDATA} | grep -v "^${TESTDATA}$" | sort
 
 echo
