@@ -478,13 +478,7 @@ def report(report_file=None, list_header=[], list_renamed=[],
         output += "\r\n"
 
     fh_report = open(report_file, "wb")
-
-    # Run the appropriate code for the Python framework used
-    if sys.version_info[0] == 2:
-        fh_report.write(output)
-    elif sys.version_info[0] > 2:
-        fh_report.write(output.encode(sys.getdefaultencoding()))
-
+    fh_report.write(output.encode(sys.getdefaultencoding()))
     fh_report.close()
 
 
