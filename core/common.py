@@ -16,7 +16,9 @@ __version__ = "2.3.6"
 import os
 import random
 import re
+import secrets
 import shutil
+import string
 import sys
 import tempfile
 from datetime import datetime as dt
@@ -64,7 +66,7 @@ def confirm_notice():
     """
         Display a notice which must be confirmed by the user to proceed.
     """
-    string = random_string(6, True, True, True, True)
+    string = random_string(6, True, True, True)
     proceed = False
     notice_text = """           o      o                     o              88
            8      8                                    88
@@ -351,37 +353,24 @@ def print_text_box(heading, text):
     print(text_box)
 
 
-def random_string(length, uppercase=True, lowercase=False, numbers=False,
-                  unique=False):
-    """
-        Generate a random string out of literals and numbers.
-    """
-    literals = "ABCDEFGHIJLMNOPQRSTUVWXYZ"
-    numbers = "0123456789"
+def random_string(length, uppercase=True, lowercase=True, numbers=True):
     chars = ""
-    string = ""
+    random_string = ""
 
     if uppercase:
-        chars += literals
+        chars += string.ascii_uppercase
     if lowercase:
-        chars += literals.lower()
+        chars += string.ascii_lowercase
     if numbers:
-        chars += numbers
+        chars += string.digits
 
-    if not chars:
-        return string
-    if len(chars) < length:
-        length = len(chars)
+    if chars == "":
+        return chars
 
-    while len(string) < length:
-        rnd = random.randint(0, len(chars) - 1)
-        char = chars[rnd]
-        if unique:
-            if char in string:
-                continue
-        string += char
+    for char in range(length):
+        random_string += secrets.choice(chars)
 
-    return string
+    return random_string
 
 
 def rename(list_files, reverse=False):
