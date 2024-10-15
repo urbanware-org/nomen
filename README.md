@@ -32,7 +32,8 @@ It also comes with an integrated simulation mode that simulates the rename proce
 
 The project also consists of [multiple components](../../wiki#components).
 
-Please be sure to read [this](../../wiki#important-notice) before using *Nomen*.
+> [!IMPORTANT]
+> Please be sure to read [this information](../../wiki#important-notice) before using *Nomen*.
 
 [Top](#nomen-)
 
