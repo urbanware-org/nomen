@@ -38,14 +38,17 @@ USAGE (nomen-dirspace.py)
 
         2.2 Warning
 
-            Please use this tool with care to avoid data damage or loss!
+            Please use this tool with care to avoid data damage or loss as
+            improper use (e.g. modifying files inside system directories) will
+            corrupt your system!
 
-            As a matter of fact, there is no function to undo the changes done
-            by this tool, so you should be aware of what you are doing. If
-            not, do NOT use this tool.
+            Before actually renaming files, it is strongly recommended to
+            simulate every rename process first to check which files would
+            have been renamed.
 
-            Improper use (e. g. modifying system directories) will corrupt
-            your system!
+            As a matter of fact, there is no function to undo any of the
+            changes done by this tool, so you should be aware of what you are
+            doing. If not, do not use this tool.
 
         2.3 Simulation mode
 
