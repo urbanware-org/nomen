@@ -1,6 +1,18 @@
 
 CHANGELOG (Nomen)
 
+    Next release (outstanding)
+
+        * Revised the code in general (negligible changes).
+        * Revised the random string generator method inside the common core
+          module.
+
+        # Fixed the list sort bug inside the static case core module (method
+          was not called properly).
+
+        - Removed the deprecated framework version check inside the common
+          core module.
+
     Version 2.3.6 (2018-09-05)
 
         * Revised the code of all components in general (applied some PEP8
