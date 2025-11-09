@@ -40,8 +40,8 @@ README (Nomen)
     Requirements
 
         In order to use Nomen, Python 3 (version 3.2 or higher recommended)
-        must be installed. Compatibility with earlier versions is possible,
-        but not guaranteed.
+        must be installed. The project may run on earlier Python versions, but
+        compatibility is not guaranteed.
 
     Usage
 
