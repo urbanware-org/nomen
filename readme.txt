@@ -39,14 +39,9 @@ README (Nomen)
 
     Requirements
 
-        In order to use the project, Python 3.2 or higher is recommended, but
-        it may also work with earlier versions.
-
-        If you need a version that works with Python 2.x, you can also find
-        one on the website of the project mentioned above.
-
-        However, version 2.3.6 is the last official release for the Python 2.x
-        framework.
+        In order to use Nomen, Python 3 (version 3.2 or higher recommended)
+        must be installed. Compatibility with earlier versions is possible,
+        but not guaranteed.
 
     Usage
 
