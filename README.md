@@ -39,13 +39,9 @@ The project also consists of [multiple components](../../wiki#components).
 
 ## Requirements
 
-In order to run the latest version of *Nomen*, the *Python* 3.x framework (version 3.2 or higher is recommended) must be installed on the system.
+In order to use *Nomen*, *Python* 3 (version 3.2 or higher recommended) must be installed. The project may run on earlier *Python* versions, but compatibility is not guaranteed.
 
-Version 2.3.6 is the last release that officially supports the *Python* 2.x framework.
-
-If you need a later version for the *Python* 2.x framework for whatever reason, you can try refactoring the syntax from *Python* 3.x to version 2.x using the *[3to2](https://pypi.python.org/pypi/3to2)* tool.
-
-However, there is no guarantee that this works properly or at all.
+If you need a version for *Python* 2 for whatever reason, you can try refactoring the syntax using the *[3to2](https://pypi.python.org/pypi/3to2)* tool. However, there is no guarantee that this works properly or at all, and support for this is not provided in any way.
 
 [Top](#nomen-)
 
