@@ -39,9 +39,12 @@ README (Nomen)
 
     Requirements
 
-        In order to use Nomen, Python 3 (version 3.2 or higher recommended)
-        must be installed. The project may run on earlier Python versions, but
-        compatibility is not guaranteed.
+        In order to use Nomen, Python 3 must be installed.
+
+        If you need a version for Python 2 for whatever reason, you can try
+        refactoring the syntax using the 3to2 tool. However, there is no
+        guarantee that this works properly or at all, and support for this is
+        not provided in any way.
 
     Usage
 
