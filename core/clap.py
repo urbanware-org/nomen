@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# ============================================================================
+#
 # Clap - Command-line argument parser module
-# Copyright (C) 2019 by Ralf Kilian
+# Copyright (c) 2025 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
 # GitHub: https://github.com/urbanware-org/clap
 # GitLab: https://gitlab.com/urbanware-org/clap
-# ============================================================================
+#
 
-__version__ = "1.1.11"
+__version__ = "1.1.13"
 
 
 def get_version():
@@ -24,13 +24,15 @@ class Parser():
     """
         Project independent command-line argument parser class.
     """
-    __arg_grp_opt = None
-    __arg_grp_req = None
-    __arg_parser = None
-    __is_argparser = False
-    __conflict_handler = "resolve"  # used by OptionParser, only
 
-    def __init__(self):
+    def __init__(self, conflict_handler_resolve=True):
+        # The conflict handler is required for OptionParser, only
+        if conflict_handler_resolve:
+            self.conflict_handler_resolve = "resolve"
+        else:
+            self.conflict_handler_resolve = "error"
+
+        self.__is_argparser = True
         try:
             from argparse import ArgumentParser
             self.__arg_parser = ArgumentParser(add_help=False)
@@ -38,23 +40,23 @@ class Parser():
                 self.__arg_parser.add_argument_group("required arguments")
             self.__arg_grp_opt = \
                 self.__arg_parser.add_argument_group("optional arguments")
-            self.__is_argparser = True
             return
         except ImportError:
-            # Ignore the exception and proceed with the fallback
-            pass
+            # Failed to import the ArgumentParser module, so proceed with
+            # OptionParser as fallback
+            self.__is_argparser = False
 
         try:
             from optparse import OptionParser
             self.__arg_parser = \
-                OptionParser(conflict_handler=self.__conflict_handler)
+                OptionParser(conflict_handler=self.conflict_handler_resolve)
             self.__arg_grp_req = \
                 self.__arg_parser.add_option_group("Required arguments")
             self.__arg_grp_opt = \
                 self.__arg_parser.add_option_group("Optional arguments")
             return
         except ImportError:
-            # This should never happen
+            # This should never be the case
             raise ImportError("Failed to initialize an argument parser.")
 
     def add_avalue(self, arg_short, arg_long, arg_help, arg_dest, arg_default,
@@ -69,20 +71,17 @@ class Parser():
 
         if arg_default is not None:
             # Enclose the value with quotes in case it is not an integer
-            quotes = "'"
-            try:
-                arg_default = int(arg_default)
+            if isinstance(arg_default, int):
                 quotes = ""
-            except ValueError:
-                pass
+            else:
+                quotes = "'"
 
             if arg_help.strip().endswith(")"):
+                arg_default = str(arg_default)
                 arg_help = arg_help.rstrip(")")
-                arg_help += ", default is %s%s%s)" % \
-                    (quotes, str(arg_default), quotes)
+                arg_help += f", default is {quotes}{arg_default}{quotes})"
             else:
-                arg_help += " (default is %s%s%s)" % \
-                    (quotes, str(arg_default), quotes)
+                arg_help += f", default is {quotes}{arg_default}{quotes})"
 
         if self.__is_argparser:
             if arg_short is None:
@@ -128,7 +127,7 @@ class Parser():
                 # the argument first
                 arg_help += " (choose from "
                 for item in arg_choices:
-                    arg_help += "'%s', " % item
+                    arg_help += f"'{item}', "
                 arg_help = arg_help.rstrip(", ") + ")"
 
                 obj.add_option(arg_short, arg_long, help=arg_help,
@@ -172,8 +171,8 @@ class Parser():
         """
         if dependency is not None:
             if arg_value is None or str(arg_value) == "":
-                raise Exception("The '%s' argument depends on %s'." %
-                                (arg_name, dependency))
+                raise ValueError(
+                    f"The '{arg_name}' argument depends on '{dependency}'.")
 
     def error(self, obj):
         """
@@ -212,5 +211,3 @@ class Parser():
             Set the epilog text.
         """
         self.__arg_parser.epilog = string.strip()
-
-# EOF
