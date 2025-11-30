@@ -68,7 +68,8 @@ def confirm_notice():
     """
     string = random_string(6, True, True, True)
     proceed = False
-    notice_text = """           o      o                     o              88
+    notice_text = \
+        f"""           o      o                     o              88
            8      8                                    88
            8      8 .oPYo. oPYo. odYo. o8 odYo. .oPYo. 88
            8  db  8 .oooo8 8  '' 8' '8  8 8' '8 8    8 88
@@ -83,9 +84,9 @@ There is no function to undo the changes done by this tool, so you
 should be aware of what you are doing. Improper use (e.g. modifying
 files inside system directories) will corrupt your system!
 
-If you wish to proceed, type '%s' (case-sensitive, without any
+If you wish to proceed, type '{string}' (case-sensitive, without any
 quotes or spaces) and press the <Return> key. Otherwise, the process
-will be canceled.""" % string
+will be canceled."""
 
     print_text_box("", notice_text)
     choice = input("> ")
