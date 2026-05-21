@@ -35,6 +35,8 @@ The project also consists of [multiple components](../../wiki#components).
 > [!IMPORTANT]
 > Please be sure to read [this information](../../wiki#important-notice) before using *Nomen*.
 
+This project transitioned into maintenance mode. Details can be found [here](https://github.com/urbanware-org/nomen/wiki#maintenance-mode).
+
 [Top](#nomen-)
 
 ## Requirements
