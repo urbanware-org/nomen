@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# ============================================================================
+#
 # Nomen - Multi-purpose rename tool
 # Extension Case Converter script
 # Copyright (C) 2018 by Ralf Kilian
@@ -9,7 +9,7 @@
 #
 # GitHub: https://github.com/urbanware-org/nomen
 # GitLab: https://gitlab.com/urbanware-org/nomen
-# ============================================================================
+#
 
 import os
 import sys
