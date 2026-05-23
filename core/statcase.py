@@ -119,5 +119,3 @@ def __read_config(config_file):
     list_config.sort()
 
     return list_config
-
-# EOF

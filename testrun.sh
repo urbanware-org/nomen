@@ -240,5 +240,3 @@ echo
 rm -fR $TESTDATA
 rm -fR $TESTDIR
 rm -f /tmp/nomen_*_$$.cfg
-
-# EOF

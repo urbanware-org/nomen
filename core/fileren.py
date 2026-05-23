@@ -701,9 +701,9 @@ def __rename_files_fill(list_files, list_renamed, list_skipped, separator,
 
     if fill_gaps:
         list_temp_renamed, list_temp_skipped = \
-             __fill_num_gaps(list_files, separator, padding,
-                             list_temp_renamed, list_temp_skipped,
-                             fs_case, step)
+            __fill_num_gaps(list_files, separator, padding,
+                            list_temp_renamed, list_temp_skipped,
+                            fs_case, step)
         list_renamed.extend(list_temp_renamed)
         list_skipped.extend(list_temp_skipped)
 
@@ -849,5 +849,3 @@ def __static_case_string(list_cfg_regex, base_name):
                                flags=re.IGNORECASE)
 
     return base_name
-
-# EOF

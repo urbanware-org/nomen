@@ -277,5 +277,3 @@ def __rename_extensions(list_files, list_extensions, list_renamed,
                                  file_newpath])
 
     return list_renamed, list_skipped
-
-# EOF

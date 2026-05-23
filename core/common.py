@@ -561,5 +561,3 @@ def __set_order(file_list, order_by):
         list_files.append(item[1])
 
     return list_files
-
-# EOF
