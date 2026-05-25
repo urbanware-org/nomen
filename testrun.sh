@@ -37,7 +37,7 @@ echo
 echo -e "\e[93m==============================================================================\e[0m"
 echo -e "\e[92mDir Spc Remover"
 echo -e "Nomen Directory Space Remover\e[0m"
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 EXCLUDE="doc"
 BASEDIR="    Foo,Bar and Foobar feat.John Doe -Foo( Bar [  2000 ] )  "
 SUBDIR="   Subdir  ,  Recursive   "
@@ -47,7 +47,7 @@ mkdir -p "${TEMP}"
 mkdir -p "${TESTDATA}/Stuff/no-spaces-around-hyphens"
 mkdir -p "${TESTDATA}/Stuff/no-spaces-yet-again"
 find ${TESTDATA} | grep -v "^${TESTDATA}$" | sort
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 ${TESTDIR}/nomen-dirspace.py -r -d ${TESTDATA} -s -l -t -b --hyphens -p --exclude "again;hyphen"
 find ${TESTDATA} | grep -v "^${TESTDATA}$" | sort
 
@@ -57,7 +57,7 @@ echo
 echo -e "\e[93m==============================================================================\e[0m"
 echo -e "\e[92mFile Name Mod"
 echo -e "Nomen File Name Modifier\e[0m"
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 rm -fR ${TESTDATA}/
 mkdir -p ${TESTDATA}/Upper
 touch ${TESTDATA}/test1.TXT
@@ -76,7 +76,7 @@ touch ${TESTDATA}/Upper/test4.Txt
 touch ${TESTDATA}/Upper/test4.txt
 touch ${TESTDATA}/Upper/test200.doc
 tree ${TESTDATA}
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 echo "Remove prefix 'test' and exclude file containing the string '${EXCLUDE}'"
 echo
 ${TESTDIR}/nomen-filemod.py --confirm -r -d ${TESTDATA} -a remove -p any \
@@ -89,7 +89,7 @@ echo
 echo -e "\e[93m==============================================================================\e[0m"
 echo -e "\e[92mFile Renamer"
 echo -e "Nomen File Renamer\e[0m"
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 RENAME_MODE="keep-order"
 RENAME_STEP=2
 EXCLUDE="doc"
@@ -112,7 +112,7 @@ touch ${TESTDATA}/Upper/test4.Txt
 touch ${TESTDATA}/Upper/test4.txt
 touch ${TESTDATA}/Upper/johndoe.doc
 tree ${TESTDATA}
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 echo "Use consecutive mode and exclude file containing the string '${EXCLUDE}'"
 echo
 touch ${TESTDATA}/test1.TXT
@@ -132,7 +132,7 @@ echo
 echo -e "\e[93m==============================================================================\e[0m"
 echo -e "\e[92mFile Name Case"
 echo -e "Nomen File Name Case Converter\e[0m"
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 rm -fR ${TESTDATA}
 mkdir -p ${TESTDATA}/sub
 touch ${TESTDATA}/tEst1.TXT
@@ -157,7 +157,7 @@ touch ${TESTDATA}/sub/johndoe.doc
 touch ${TESTDATA}/sub/hansgruber.doc
 touch ${TESTDATA}/sub/readme.doc
 tree ${TESTDATA}
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 echo "Adjust file names to title case except for certain names (see case config) and"
 echo "rename duplicates"
 echo
@@ -173,7 +173,7 @@ echo
 echo -e "\e[93m==============================================================================\e[0m"
 echo -e "\e[92mExt Renamer"
 echo -e "Nomen Extension Renamer\e[0m"
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 rm -fR ${TESTDATA}
 mkdir -p ${TESTDATA}/sub
 touch ${TESTDATA}/test1.TXT
@@ -193,7 +193,7 @@ touch ${TESTDATA}/sub/test4.Txt
 touch ${TESTDATA}/sub/test4.txt
 touch ${TESTDATA}/sub/johndoe.doc
 tree ${TESTDATA}
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 echo "Adjust '*.txt' extensions (case-insensitive) to '*.renamed' and rename"
 echo "duplicates"
 echo
@@ -206,7 +206,7 @@ echo
 echo -e "\e[93m==============================================================================\e[0m"
 echo -e "\e[92mExt Case Conv"
 echo -e "Nomen Extension Case Converter\e[0m"
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 rm -fR ${TESTDATA}
 mkdir -p ${TESTDATA}/sub
 touch ${TESTDATA}/test1.TXT
@@ -227,7 +227,7 @@ touch ${TESTDATA}/sub/test4.txt
 touch ${TESTDATA}/sub/test4.TxT
 touch ${TESTDATA}/sub/johndoe.doc
 tree ${TESTDATA}
-echo "------------------------------------------------------------------------------"
+echo -e "\e[90m------------------------------------------------------------------------------\e[0m"
 echo "Adjust extensions to lowercase and rename duplicates"
 echo
 ${TESTDIR}/nomen-extcase.py --confirm -r -d ${TESTDATA} -m rename -c lower
