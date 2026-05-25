@@ -5,7 +5,7 @@ README (Nomen)
 
         Nomen
         Version 2.3.6
-        Copyright (C) 2018 by Ralf Kilian
+        Copyright (c) 2026 by Ralf Kilian
 
         GitHub: https://github.com/urbanware-org/nomen
         GitLab: https://gitlab.com/urbanware-org/nomen

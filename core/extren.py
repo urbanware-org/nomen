@@ -4,7 +4,7 @@
 #
 # Nomen - Multi-purpose rename tool
 # Extension Renamer core module
-# Copyright (C) 2018 by Ralf Kilian
+# Copyright (c) 2026 by Ralf Kilian
 # Distributed under the MIT License (https://opensource.org/licenses/MIT)
 #
 # GitHub: https://github.com/urbanware-org/nomen
