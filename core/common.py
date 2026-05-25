@@ -66,7 +66,7 @@ def confirm_notice():
     """
         Display a notice which must be confirmed by the user to proceed.
     """
-    string = random_string(6, True, True, True)
+    rnd_string = random_string(6, True, True, True)
     proceed = False
     notice_text = \
         f"""           o      o                     o              88
@@ -84,19 +84,19 @@ There is no function to undo the changes done by this tool, so you
 should be aware of what you are doing. Improper use (e.g. modifying
 files inside system directories) will corrupt your system!
 
-If you wish to proceed, type '{string}' (case-sensitive, without any
+If you wish to proceed, type '{rnd_string}' (case-sensitive, without any
 quotes or spaces) and press the <Return> key. Otherwise, the process
 will be canceled."""
 
     print_text_box("", notice_text)
     choice = input("> ")
 
-    if choice == string:
+    if choice == rnd_string:
         choice = "Proceeding."
         proceed = True
     else:
         choice = "Canceled."
-    print("\n%s\n" % choice)
+    print(f"\n{choice}\n")
 
     return proceed
 
