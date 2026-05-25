@@ -35,8 +35,8 @@ echo
 echo
 echo
 echo "=============================================================================="
-figlet "Dir Spc Remover"
-echo "Nomen Directory Space Remover"
+echo -e "\e[92mDir Spc Remover"
+echo -e "Nomen Directory Space Remover\e[0m"
 echo "------------------------------------------------------------------------------"
 EXCLUDE="doc"
 BASEDIR="    Foo,Bar and Foobar feat.John Doe -Foo( Bar [  2000 ] )  "
@@ -55,8 +55,8 @@ echo
 echo
 echo
 echo "=============================================================================="
-figlet "File Name Mod"
-echo "Nomen File Name Modifier"
+echo -e "\e[92mFile Name Mod"
+echo -e "Nomen File Name Modifier\e[0m"
 echo "------------------------------------------------------------------------------"
 rm -fR ${TESTDATA}/
 mkdir -p ${TESTDATA}/Upper
@@ -87,8 +87,8 @@ echo
 echo
 echo
 echo "=============================================================================="
-figlet "File Renamer"
-echo "Nomen File Renamer"
+echo -e "\e[92mFile Renamer"
+echo -e "Nomen File Renamer\e[0m"
 echo "------------------------------------------------------------------------------"
 RENAME_MODE="keep-order"
 RENAME_STEP=2
@@ -130,8 +130,8 @@ echo
 echo
 echo
 echo "=============================================================================="
-figlet "File Name Case"
-echo "Nomen File Name Case Converter"
+echo -e "\e[92mFile Name Case"
+echo -e "Nomen File Name Case Converter\e[0m"
 echo "------------------------------------------------------------------------------"
 rm -fR ${TESTDATA}
 mkdir -p ${TESTDATA}/sub
@@ -171,8 +171,8 @@ echo
 echo
 echo
 echo "=============================================================================="
-figlet "Ext Renamer"
-echo "Nomen Extension Renamer"
+echo -e "\e[92mExt Renamer"
+echo -e "Nomen Extension Renamer\e[0m"
 echo "------------------------------------------------------------------------------"
 rm -fR ${TESTDATA}
 mkdir -p ${TESTDATA}/sub
@@ -204,8 +204,8 @@ echo
 echo
 echo
 echo "=============================================================================="
-figlet "Ext Case Conv"
-echo "Nomen Extension Case Converter"
+echo -e "\e[92mExt Case Conv"
+echo -e "Nomen Extension Case Converter\e[0m"
 echo "------------------------------------------------------------------------------"
 rm -fR ${TESTDATA}
 mkdir -p ${TESTDATA}/sub
