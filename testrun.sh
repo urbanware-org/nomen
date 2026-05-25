@@ -16,6 +16,9 @@ else
     echo "This is a simple shell script to test the functionality of the different Nomen"
     echo "components. For details of each step see the script code."
     echo
+    echo "Notice that it requires a case-sensitive filesystem (e.g. 'ext3') in order to"
+    echo "work properly."
+    echo
     echo "Hit Return to proceed or Ctrl+C to cancel."
     read
 fi
