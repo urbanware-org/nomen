@@ -132,7 +132,7 @@ def rename_extensions(directory, conflict_mode, extension, extension_target,
 
     pattern = ""
     for extension in list_extensions:
-        pattern += "(.*\." + str(extension) + "$)|"
+        pattern += r"(.*\." + str(extension) + "$)|"
     pattern = pattern.rstrip("|")
 
     if ignore_case:
